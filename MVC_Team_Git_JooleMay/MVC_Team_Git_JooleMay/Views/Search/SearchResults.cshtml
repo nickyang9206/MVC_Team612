@@ -51,7 +51,7 @@
             <hr />
             <div id="modelyear">
                 Model Year:
-                @Html.TextBoxFor(modelItem => Model.YearStart,null, new { id = "textbox" })<span id="space">--</span>@Html.TextBoxFor(modelItem => Model.YearEnd, null, new { id = "textbox" })
+                @Html.TextBoxFor(modelItem => Model.YearStart, null, new { id = "textbox" })<span id="space">--</span>@Html.TextBoxFor(modelItem => Model.YearEnd, null, new { id = "textbox" })
                 @*<input type="text" name="beginningYear" style="margin-left:10px;margin-right:10px;" maxlength="4" size="4">  -- <input type="text" style="margin-left:10px" name="endingYear" maxlength="4" size="4">*@
             </div>
             <hr />
@@ -59,53 +59,53 @@
             <div class="tech" style="margin-bottom:20px;" id="tech">
                 <hr />
 
-              
+
                 @for (int i = 0; i < Model.ModelTechFilters.Count(); i++)
                 {
                     if (Model.ModelTechFilters[i].IsActive)
                     {
-            <div id="@("sliderf" + @Model.ModelTechFilters[i].PropertyID)" class="sliderf">
-                <b>
-                    <img src="https://img.icons8.com/material-outlined/16/000000/sorting-arrows.png">
-                    @Html.DisplayFor(model => Model.ModelTechFilters[i].PropertyName)
-                </b><br />
-                @Html.TextBoxFor(model => Model.ModelTechFilters[i].MinValue, new { id = "item_MinValue" })
-                @Html.TextBoxFor(model => Model.ModelTechFilters[i].MaxValue, new { id = "item_MaxValue" })
-                @Html.Hidden("hMaxValue", Model.ModelTechFilters[i].MaxValue)
-                @Html.Hidden("hMinValue", Model.ModelTechFilters[i].MinValue)
-                @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyID)
-                @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyName)
-                @Html.HiddenFor(model => Model.ModelTechFilters[i].IsActive)
-                <div id="@("slider" + @Model.ModelTechFilters[i].PropertyID)" class="slider"></div><br />
-            </div>
+                        <div id="@("sliderf" + @Model.ModelTechFilters[i].PropertyID)" class="sliderf">
+                            <b>
+                                <img src="https://img.icons8.com/material-outlined/16/000000/sorting-arrows.png">
+                                @Html.DisplayFor(model => Model.ModelTechFilters[i].PropertyName)
+                            </b><br />
+                            @Html.TextBoxFor(model => Model.ModelTechFilters[i].MinValue, new { id = "item_MinValue" })
+                            @Html.TextBoxFor(model => Model.ModelTechFilters[i].MaxValue, new { id = "item_MaxValue" })
+                            @Html.Hidden("hMaxValue", Model.ModelTechFilters[i].MaxValue)
+                            @Html.Hidden("hMinValue", Model.ModelTechFilters[i].MinValue)
+                            @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyID)
+                            @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyName)
+                            @Html.HiddenFor(model => Model.ModelTechFilters[i].IsActive)
+                            <div id="@("slider" + @Model.ModelTechFilters[i].PropertyID)" class="slider"></div><br />
+                        </div>
                     }
                     else
                     {
-            <div id="@("sliderf" + @Model.ModelTechFilters[i].PropertyID)" class="sliderf" style=" display:none">
-                <b>
-                    <img src="https://img.icons8.com/material-outlined/16/000000/sorting-arrows.png">
-                    @Html.DisplayFor(model => Model.ModelTechFilters[i].PropertyName)
-                </b><br />
-                @Html.TextBoxFor(model => Model.ModelTechFilters[i].MinValue, new { id = "item_MinValue" })
-                @Html.TextBoxFor(model => Model.ModelTechFilters[i].MaxValue, new { id = "item_MaxValue" })
-                @Html.Hidden("hMaxValue", Model.ModelTechFilters[i].MaxValue)
-                @Html.Hidden("hMinValue", Model.ModelTechFilters[i].MinValue)
-                @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyID)
-                @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyName)
-                @Html.HiddenFor(model => Model.ModelTechFilters[i].IsActive)
-                <div id="@("slider" + @Model.ModelTechFilters[i].PropertyID)" class="slider"></div><br />
-            </div>
+                        <div id="@("sliderf" + @Model.ModelTechFilters[i].PropertyID)" class="sliderf" style=" display:none">
+                            <b>
+                                <img src="https://img.icons8.com/material-outlined/16/000000/sorting-arrows.png">
+                                @Html.DisplayFor(model => Model.ModelTechFilters[i].PropertyName)
+                            </b><br />
+                            @Html.TextBoxFor(model => Model.ModelTechFilters[i].MinValue, new { id = "item_MinValue" })
+                            @Html.TextBoxFor(model => Model.ModelTechFilters[i].MaxValue, new { id = "item_MaxValue" })
+                            @Html.Hidden("hMaxValue", Model.ModelTechFilters[i].MaxValue)
+                            @Html.Hidden("hMinValue", Model.ModelTechFilters[i].MinValue)
+                            @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyID)
+                            @Html.HiddenFor(model => Model.ModelTechFilters[i].PropertyName)
+                            @Html.HiddenFor(model => Model.ModelTechFilters[i].IsActive)
+                            <div id="@("slider" + @Model.ModelTechFilters[i].PropertyID)" class="slider"></div><br />
+                        </div>
                     }
 
                 }
 
-                
+
             </div>
         </div>
     </div>
 }
 
-<div class="split right" style="overflow-y: scroll";>
+<div class="split right" style="overflow-y: scroll" ;>
     <div class="productBlock">
         <div class="bar">
             <p>
