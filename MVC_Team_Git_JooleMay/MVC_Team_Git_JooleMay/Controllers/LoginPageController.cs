@@ -27,11 +27,12 @@ namespace MVC_Team_Git_JooleMay.Controllers
 
 
                 model.ValidMessage = userService.checkUserLogin(userName, password);
-                loginUser = new VMRegister() {  UserName = model.UserName, Password = model.Password , ValidMessage = model.ValidMessage };
+                loginUser = new VMRegister() { UserName = model.UserName, Password = model.Password, ValidMessage = model.ValidMessage };
 
                 if (model.ValidMessage == "Login successful")
                 {
-                    return RedirectToAction("SearchPage", "Search");
+                    Session["UserId"] = 1;
+                    return RedirectToAction("Search", "Search");
                 }
             }
             return View("DoLogin", "LoginPage", loginUser);
@@ -55,78 +56,20 @@ namespace MVC_Team_Git_JooleMay.Controllers
 
             if (ModelState.IsValid)
             {
+                string msg = "";
+
+                bool isValidImg = IsImageValid(model, userImage);
+
                 IService userService = new Service();
                 tblUser userTable = new tblUser();
-                userTable = new tblUser() { UserName = model.UserName, Email = model.Email, Password = model.Password, PicUrl = userImage.FileName};
-                userService.Insert(userTable);
+                userTable = new tblUser() { UserName = model.UserName, Email = model.Email, Password = model.Password, PicUrl = model.ImageUrl };
+                model.ValidMessage = userService.Insert(userTable);
 
-
-            }
-
-
-            bool isValidDoc = false;
-            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
-
-
-            if (ModelState.IsValid)
-            {
-                using (JooleMayEntities db = new JooleMayEntities())
+                if (isValidImg)
                 {
-                    tblUser userDB = new tblUser
-                    {
-                        UserID = model.UserID,
-                        UserName = model.UserName,
-                        Email = model.Email,
-                        Password = model.Password,
-                        PicUrl = model.ImageUrl
-                    };
-
-
-
-                    if (userImage != null && userImage.ContentLength > 0)
-                    {
-                        isValidDoc = formats.Any(
-                            p => userImage.FileName.EndsWith(p, StringComparison.OrdinalIgnoreCase));
-                    }
-
-                    if (isValidDoc)
-                    {
-                        model.ImageUrl = Path.GetFileName(userImage.FileName);
-                    }
-
-
-
-                    /******************************************************/
-
-
-                    if (model.UserID == 0)
-                    {
-                        db.tblUsers.Add(userDB);
-                    }
-                    else
-                    {
-                        db.Entry(model).State = EntityState.Modified;
-                    }
-
-                    //db.SaveChanges();
-
-                    if (isValidDoc)
-                    {
-                        var fileDirectory =
-                        Path.Combine(Server.MapPath(ConfigurationManager.AppSettings["UserLoginImageUploadBase"]));
-
-                        Directory.CreateDirectory(fileDirectory);
-
-                        var filePath = Path.Combine(fileDirectory, model.ImageUrl);
-
-                        if (System.IO.File.Exists(filePath))
-                        {
-                            System.IO.File.Delete(filePath);
-                        }
-                        userImage.SaveAs(filePath);
-                    }
+                    SaveImage(model, userImage);
+                    return View(model);
                 }
-
 
             }
 
@@ -135,5 +78,53 @@ namespace MVC_Team_Git_JooleMay.Controllers
 
         }
 
+        private static string GetImage(string imageUrl)
+        {
+            var imageUrlFormated = "/image/defaultImage.png";
+            if (!string.IsNullOrEmpty(imageUrl))
+            {
+                imageUrlFormated = $"{ConfigurationManager.AppSettings["UserLoginImageUploadBase"].Replace("~", "")}{imageUrl}";
+            }
+            return imageUrlFormated;
+        }
+
+
+        private bool IsImageValid(VMRegister model, HttpPostedFileBase userImage)
+        {
+            bool isValidImg = false;
+            string[] formats = new string[] { ".jpg", ".png", ".gif", ".jpeg" };
+
+            if (userImage != null && userImage.ContentLength > 0)
+            {
+                isValidImg = formats.Any(
+                    p => userImage.FileName.EndsWith(p, StringComparison.OrdinalIgnoreCase));
+            }
+
+
+            if (isValidImg)
+            {
+                model.ImageUrl = Path.GetFileName(userImage.FileName);
+            }
+
+            return isValidImg;
+        }
+
+        private void SaveImage(VMRegister model, HttpPostedFileBase userImage)
+        {
+
+            var fileDirectory =
+                       Path.Combine(Server.MapPath(ConfigurationManager.AppSettings["UserLoginImageUploadBase"]));
+
+            Directory.CreateDirectory(fileDirectory);
+
+            var filePath = Path.Combine(fileDirectory, model.ImageUrl);
+
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+            userImage.SaveAs(filePath);
+
+        }
     }
 }
