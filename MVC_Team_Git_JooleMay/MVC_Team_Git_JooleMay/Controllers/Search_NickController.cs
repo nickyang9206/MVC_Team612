@@ -60,15 +60,17 @@ namespace MVC_Team_Git_JooleMay.Controllers
         public ActionResult SearchResults(SearchResultS_Model vmSearchResult, string submit)
         {
             int _subCategoryID = Convert.ToInt32(Session["SessionSubCategoryID"]);
-            vmSearchResult.ModelTechFilters = _service.GetModelTechFilters(_subCategoryID);
+            
             switch (submit)
             {
                 case "Save":
                     vmSearchResult.SMProductDetails = _service.GetFiltered(vmSearchResult, _subCategoryID);
+                    vmSearchResult.ModelTechFilters = _service.GetModelTechFilters(_subCategoryID);
                     //return PartialView("ProductListPartial", vmSearchResult.SMProductDetails);
                     return View("SearchResults", vmSearchResult);
                 case "Clear":
                     vmSearchResult.SMProductDetails = _service.GetProductDetails(_subCategoryID);
+                    vmSearchResult.ModelTechFilters = _service.GetModelTechFilters(_subCategoryID);
                     //return PartialView("ProductListPartial", vmSearchResult.SMProductDetails);
                     return View("SearchResults", vmSearchResult);
             }
