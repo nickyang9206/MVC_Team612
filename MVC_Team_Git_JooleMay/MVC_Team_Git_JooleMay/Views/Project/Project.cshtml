@@ -1,0 +1,45 @@
+﻿@model MVC_Team_Git_JooleMay.Models.VMProject
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+
+<h2 style="margin-left:62px;">Project List</h2>
+<table width="90%" align="center">
+    <thead>
+        
+    </thead>
+    <tbody>
+        @Html.Hidden("ProductId", Model.ProductID)
+
+        <tr>
+            <td style="background-color:#F0F0F0;text-align:center;font-size:18px;">
+            Project Name
+            </td>
+            <td>
+                <img src="@Model.ProductDetails.ProductImgUrl" style="width:300px;height:250px"><br />
+                 <div style="width:130px;background-color:#F0F0F0; display:inline;float:left;">ManufactureName:</div>
+                <div  style="display:inline; margin-left:50px;">@Html.DisplayFor(modelItem => Model.ProductDetails.ManufactureName)</div><br />          
+                <div style="width:130px;background-color:#F0F0F0; display:inline;float:left;">SeriesName:</div>
+                <div  style="display:inline; margin-left:50px;">@Html.DisplayFor(modelItem => Model.ProductDetails.SeriesName)</div><br />
+                <div style="width:130px;background-color:#F0F0F0; display:inline;float:left;">ModelName:</div>
+                <div style="display:inline; margin-left:50px;">@Html.DisplayFor(modelItem => Model.ProductDetails.ModelName)</div><br />
+                <div style="width:130px;background-color:#F0F0F0;display:inline;float:left;">ModelYear:</div>
+                <div style="display:inline; margin-left:50px;">@Html.DisplayFor(modelItem => Model.ProductDetails.ModelYear)</div><br />
+            </td>
+        </tr>
+        
+            @foreach (var item in Model.ProjectList)
+            {
+                
+                <tr>
+                    
+                    <td style="background-color:#F0F0F0;">@item.ProjectName</td>
+                    <td style="padding-left:180px;">
+                        @Html.ActionLink("Add to Project", "AddToProject", new { projectID = item.ProjectID, productID = Model.ProductID },
+                  new { onclick = "return confirm('Added to Your Project!')" })
+                    </td>
+                </tr>
+             }
+    </tbody>
+    </table>

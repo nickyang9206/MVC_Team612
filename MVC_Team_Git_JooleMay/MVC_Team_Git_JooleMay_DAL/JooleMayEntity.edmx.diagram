@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="af9fc0550e064848ba267f4fdd678579" Name="Diagram1">
+        <EntityTypeShape EntityType="JooleMayEntity.tblManufacture" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProduct" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProductCategory" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProductProperty" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProductSubCategory" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProductTypeDetail" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProject" Width="1.5" PointX="8" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblSery" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblTechnicalSpecification" Width="1.5" PointX="3" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblUser" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblTechSpecFilter" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProduct_tblManufacture" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProduct_tblProductCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProduct_tblProductSubCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProduct_tblProductTypeDetails" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProduct_tblSeries" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProduct_tblTechnicalSpecification" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProductSubCategories_tblProductCategories" ManuallyRouted="false" />
+        <AssociationConnector Association="JooleMayEntity.FK_tblProject_tblUser" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="JooleMayEntity.tblProject2Product" Width="1.5" PointX="7.375" PointY="9.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

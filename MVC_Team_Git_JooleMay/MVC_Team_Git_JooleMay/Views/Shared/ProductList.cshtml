@@ -1,0 +1,15 @@
+﻿@model MVC_Team_Git_JooleMay.Models.VMProduct
+
+    @{
+        ViewBag.Title = "ProductList";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+ 
+@foreach (var p in Model.Products)
+{
+    <div class="item">
+        <h3>@p.ProductName</h3>
+        @p.ProductModel
+    </div>
+}

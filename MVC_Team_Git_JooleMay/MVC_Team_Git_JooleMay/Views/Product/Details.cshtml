@@ -1,0 +1,118 @@
+﻿@*@model IEnumerable<MVC_Team_Git_JooleMay_DAL.tblProduct>*@
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+
+
+@section Styles {
+    <link href="@Url.Content("~/Content/Style/details.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="bar">
+    <p>
+        @Html.ActionLink("Product Summary", "Index", "Home", null, new { @class = "active" })
+        @Html.ActionLink("Product Details", "Details", "Home")
+        @Html.ActionLink("Product Documentation", "Contact", "Home")
+        @Html.ActionLink("Contact", "Contact", "Home")
+    </p>
+</div>
+<div class="container">
+    <h2>Product Summary</h2>
+    <table class="inlineTable">
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProductID)
+                @Html.DisplayFor(modelItem => item.ProductID)
+            </th>*@
+        <tr>
+            <th>DESCRIPTION</th>
+        <tr>
+            <td>Manufacture</td>
+            <td>@Model.ManufactureName</td>
+        </tr>
+        <tr>
+            <td>Series</td>
+            <td>@Model.SeriesName</td>
+        </tr>
+        <tr>
+            <td>Model</td>
+            <td>@Model.ModelName</td>
+        </tr>
+        <tr><th>TYPE</th></tr>
+        <tr>
+            <td>Use Type</td>
+            <td>@Model.UserType</td>
+        </tr>
+        <tr>
+            <td>Application</td>
+            <td>@Model.Application</td>
+        </tr>
+        <tr>
+            <td>Mountain Location</td>
+            <td>@Model.MountainLocation</td>
+        </tr>
+        <tr>
+            <td>Accessories</td>
+            <td>@Model.Accessories</td>
+        </tr>
+        <tr>
+            <td>Model Year</td>
+            <td>@Model.ModelYear</td>
+        </tr>
+    </table>
+    <table class="inlineTable">
+        <tr>
+            <th>TECHNICAL  SPECIFICATION</th>
+        </tr>
+        <tr>
+            <td>Air Flow(CFM)</td>
+            <td>@Model.AirFlow</td>
+        </tr>
+        <tr>
+            <td>Power(W)</td>
+            <td scope="row">Min</td>
+            <td scope="col">@Model.PowerMin</td>
+            <td scope="row">Max</td>
+            <td scope="col">@Model.PowerMax</tdscope="col">
+        </tr>
+        <tr>
+            <td>Operating Voltage(VAC)</td>
+            <td scope="row">Min</td>
+            <td scope="col">@Model.VAC_Min</td>
+            <td scope="row">Max</td>
+            <td scope="col">@Model.VAC_Max</td>
+        </tr>
+        <tr>
+            <td>Fan Speed(PRM)</td>
+            <td scope="row">Min</td>
+            <td scope="col">@Model.FanSpeedMin</td>
+            <td scope="row">Max</td>
+            <td scope="col">@Model.FanSpeedMax</td>
+        </tr>
+        <tr>
+            <td>Number of fan speeds</td>
+            <td>@Model.NumberofFanSpeed</td>
+        </tr>
+        <tr>
+            <td>Sound at max speed(dBA)</td>
+            <td>@Model.SoundAtMaxSpeed</td>
+        </tr>
+        <tr>
+            <td>Fan sweep diameter(m)</td>
+            <td>@Model.FanSweepDiameter</td>
+        </tr>
+        <tr>
+            <td>Height(in)</td>
+            <td scope="row">Min</td>
+            <td scope="col">@Model.HeightMin</td>
+            <td scope="row">Max</td>
+            <td scope="col">@Model.HeightMax</td>
+        </tr>
+        <tr>
+            <td>Weight(lbs)</td>
+            <td>@Model.Weight</td>
+        </tr>
+    </table>
+</div>
