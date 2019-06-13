@@ -1,7 +1,6 @@
 ﻿using System;
-﻿using MVC_Team_Git_JooleMay_Service.Class_Service;
+using MVC_Team_Git_JooleMay_Service.Class_Service;
 using MVC_Team_Git_JooleMay_Service.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,22 +11,35 @@ namespace MVC_Team_Git_JooleMay.Controllers
 {
     public partial class SearchController : Controller
     {
+        //Ruhsar Kahraman[12:21 PM]
         [HttpGet]
         public ActionResult Compare()
         {
             List<int> productList = new List<int>();
             var products = (List<int>)TempData["products"];
+            if (products == null)
+            {
+                return HttpNotFound();
+            }
             foreach (int i in products)
             {
                 productList.Add(i);
             }
-            return View(_service.GetProductDetailsForCompare(productList));
+            List<SMProductDetails> smProductList = _service.GetProductDetailsForCompare(productList);
+            if (smProductList == null)
+            {
+                return HttpNotFound();
+            }
+            return View(smProductList);
         }
 
         [HttpPost]
         public JsonResult Comparison(int[] ProductList)
         {
-            TempData["products"] = ProductList.ToList();
+            if (ProductList != null)
+            {
+                TempData["products"] = ProductList.ToList();
+            }
             return Json("", JsonRequestBehavior.AllowGet);
         }
     }
