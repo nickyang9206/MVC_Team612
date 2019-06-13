@@ -1,0 +1,91 @@
+﻿@model IEnumerable<MVC_Team_Git_JooleMay_Service.Models.SMProductDetails>
+
+
+    <div class="col-md-9">
+        <form style=" padding:5px">
+            @foreach (var product in Model)
+            {
+                <div id="@Html.DisplayFor(modelItem => product.ProductID)" style="float:left;margin-left:10px;margin-top:10px;border: 3px solid gray; text-align: center; display: inline-block; width: 200px; height: 400px;">
+                    @*<img src="" @product.ProductID'.jpg" style="width:80px;height:60px">*@
+                    <br />
+                    <b> @Html.ActionLink("" + @Html.DisplayFor(modelItem => product.ManufactureName) + "", "Summa", "Home", new { id = @Html.DisplayFor(modelItem => product.ProductID) }, new { @class = "my-class" })</b>
+                    <br />
+                    <b>@Html.DisplayFor(modelItem => product.SeriesName)</b><br />
+                    <b>@Html.DisplayFor(modelItem => product.ProductModel)</b><br />
+                    @*@foreach (var c in product.Specifications)
+                    {
+                        @Html.DisplayFor(modelItem => specifications)<br />
+                    }
+                    @Html.DisplayFor(modelItem => product.Specifications)<br />*@
+                    @*@using (Html.BeginForm("Compare", "Search", FormMethod.Post))
+                    {*@
+                    <input type="checkbox" name="compare" id=@Html.DisplayFor(modelItem => product.ProductID) value=@Html.DisplayFor(modelItem => product.ProductID) /> <b>Compare</b>
+
+                    <button type="button" value="Add to" onclick="location.href='@Url.Action("Project", "Project", new { productID = product.ProductID })'">Add to</button>
+
+                </div>
+            }
+        </form>
+        <button class="btnRedirect" id="ProductList" type="button" value="Comparison">Comparison</button>
+    </div>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script>
+    $(document).ready(function () {
+        $("#ProductList").on("click", function () {
+            var arrProduct = [];
+            var commaSeperatedIds = "";
+            var frm = $("form input[type=checkbox]").each(function (index, val) {
+                var checkID = (val).id
+                isChecked = val.checked; 
+
+                if (isChecked) {
+                    arrProduct.push(checkID);
+                }
+                if (arrProduct.length != 0) {
+                    commaSeperatedIds = arrProduct.toString();
+                }
+            });
+            $.ajax({
+                url: "/Search/Comparison",
+                type: "Post",
+                data: { ProductList: arrProduct },
+                success: function (response) {
+                    window.location.href= "/Search/Compare";
+                }
+            })
+           
+        });
+    //     var Compare = function () {
+            //var arrProduct = [];
+            //var commaSeperatedIds = "";
+            //$("#ProductList form input[type=checkbox]").each(function (index, val) {
+            //debugger
+            //var checkID = $(val).attr("Id");
+
+            //var isChecked = $("#" + checkID).is(":checked", true);
+
+            //if (isChecked) {
+            //    arrProduct.push(checkID);
+            //}
+            //if (arrProduct.length != 0) {
+            //    commaSeperatedIds = arrProduct.toString();
+            //}
+    //        $.ajax({
+    //            url = "/Search/Compare",
+    //            type: "Post",
+    //            data: { ProductList: commaSeperatedIds },
+    //            success: function (response) {
+
+    //            }
+    //        })
+    //    })
+    //};
+
+    });
+       
+    
+    
+    </script>
+
+

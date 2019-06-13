@@ -1,0 +1,14 @@
+﻿@model MVC_Team_Git_JooleMay.Models.VMSearchResult
+
+@{
+    ViewBag.Title = "SearchResultPage";
+    Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+
+<h2>SearchResultPage</h2>
+@using (Html.BeginForm())
+{
+    
+        Html.RenderAction("ProductListPartial", "Search", Model);
+         
+}

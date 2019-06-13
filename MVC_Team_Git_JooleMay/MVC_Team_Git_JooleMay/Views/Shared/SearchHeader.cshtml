@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>SearchPage</title>
+    <link href="@Url.Content("~/Content/Style/SearchHeader.css")" rel="stylesheet" type="text/css" />
+    @RenderSection("Styles", false)
+    @Scripts.Render("~/bundles/modernizr")
+   
+</head>
+<body>
+    <div class="header" id="container">
+        <h1 id="logoname">j<span class="circle-overlaping"></span><span id="logonametwo">le</span></h1>
+        <div class="search">
+            @*<div style="position:relative;width:200px;height:25px;border:0;padding:0;margin:0;">*@
+            <form action="/action_page.php" class="searchbar">
+                <select name="dropdown" class="btn-info" required>
+                    <option value="Category" selected>Category</option>
+                    <option value="Mechanical" class="nocolor">Mechanical</option>
+                    <option value="Electrical" class="nocolor">Electrical</option>
+                    <option value="Stationary" class="nocolor">Stationary</option>
+                    <option value="Furniture" class="nocolor">Furniture</option>
+                </select>
+
+                @*this is search button should change with dropdown*@
+                <select name="dropdown" class="btn-search" required>
+                    <option value="">Search...</option>
+                    @*There should be several option values which are consistent with above option*@
+                    <option value="Electrical" class="nocolor">Electrical</option>
+                    <option value="Stationary" class="nocolor">Stationary</option>
+                    <option value="Furniture" class="nocolor">Furniture</option>
+                </select>
+
+                <button type="submit" class="btn-info"><i class="fa fa-search"></i></button>
+            </form>
+
+        </div>
+        <div id="circle"></div>
+    </div>
+        
+    <div class=" body-content" id="content">
+        @RenderBody()
+    </div>
+    
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

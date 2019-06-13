@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{13F4571C-7CE1-4F6D-BD08-CD27EDB27703}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MVC_Team_Git_JooleMay_Repository</RootNamespace>
+    <AssemblyName>MVC_Team_Git_JooleMay_Repository</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class_Repository\CategoryRepository.cs" />
+    <Compile Include="Class_Repository\GenericRepository.cs" />
+    <Compile Include="Class_Repository\ManufactureRepository.cs" />
+    <Compile Include="Class_Repository\ProductPropertyRepository.cs" />
+    <Compile Include="Class_Repository\ProductRepository.cs" />
+    <Compile Include="Class_Repository\ProductTypeDetailsRepository.cs" />
+    <Compile Include="Class_Repository\Project2ProductRepository.cs" />
+    <Compile Include="Class_Repository\ProjectRepository.cs" />
+    <Compile Include="Class_Repository\SeryRepository.cs" />
+    <Compile Include="Class_Repository\SubCategoryRepository.cs" />
+    <Compile Include="Class_Repository\TechnicalSpecificationRepository.cs" />
+    <Compile Include="Class_Repository\TechSpecFilterRepository.cs" />
+    <Compile Include="Class_Repository\UnitOfWork_Mei.cs" />
+    <Compile Include="Class_Repository\UnitOfWork.cs" />
+    <Compile Include="Class_Repository\UnitOfWork_Nick.cs" />
+    <Compile Include="Class_Repository\UnitOfWork_Ruhsar.cs" />
+    <Compile Include="Class_Repository\UserRepository.cs" />
+    <Compile Include="Interface_Repository\ICategoryRepository.cs" />
+    <Compile Include="Interface_Repository\IGenericRepository.cs" />
+    <Compile Include="Interface_Repository\IManufactureRepository.cs" />
+    <Compile Include="Interface_Repository\IProductPropertyRepository.cs" />
+    <Compile Include="Interface_Repository\IProductRepository.cs" />
+    <Compile Include="Interface_Repository\IProductTypeDetailsRepository.cs" />
+    <Compile Include="Interface_Repository\IProject2ProductRepository.cs" />
+    <Compile Include="Interface_Repository\IProjectRepository.cs" />
+    <Compile Include="Interface_Repository\ISeryRepository.cs" />
+    <Compile Include="Interface_Repository\ISubCategoryRepository.cs" />
+    <Compile Include="Interface_Repository\ITechnicalSpecificationRepository.cs" />
+    <Compile Include="Interface_Repository\ITechSpecFilterRepository.cs" />
+    <Compile Include="Interface_Repository\IUnitOfWork_Mei.cs" />
+    <Compile Include="Interface_Repository\IUnitOfWork.cs" />
+    <Compile Include="Interface_Repository\IUnitOfWork_Nick.cs" />
+    <Compile Include="Interface_Repository\IUnitOfWork_Ruhsar.cs" />
+    <Compile Include="Interface_Repository\IUserRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MVC_Team_Git_JooleMay_DAL\MVC_Team_Git_JooleMay_DAL.csproj">
+      <Project>{ab57d07f-7bab-413b-8a92-2a2185fdf3c1}</Project>
+      <Name>MVC_Team_Git_JooleMay_DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

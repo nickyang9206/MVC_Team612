@@ -1,0 +1,94 @@
+﻿@model IEnumerable<MVC_Team_Git_JooleMay_DAL.tblProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductModel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubCategoryID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ManufactureID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SeriesID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TechnicalSpecificationID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTypeDetailsID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductImgUrl)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductModel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubCategoryID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ManufactureID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SeriesID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TechnicalSpecificationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductTypeDetailsID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProductImgUrl)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

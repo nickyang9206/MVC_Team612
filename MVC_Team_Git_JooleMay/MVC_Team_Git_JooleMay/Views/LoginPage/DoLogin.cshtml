@@ -1,0 +1,33 @@
+﻿@model MVC_Team_Git_JooleMay.Models.VMRegister
+
+
+
+
+
+@{
+    ViewBag.Title = "DoLogin";
+    Layout = "~/Views/Shared/LoginPage.cshtml";
+}
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/Style/LoginPage.css" rel="stylesheet" />
+<link href="~/Content/Style/popupwindow.css" rel="stylesheet" />
+<link href="~/Content/Style/LoginViewStyle.css" rel="stylesheet" />
+
+
+
+
+
+
+
+@Html.Partial("_Register", Model)
+
+@Html.Partial("_Login", Model)
+
+
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/js/modalpopupwindow.js"></script>
+<script src="~/js/loginpage.js"></script>
