@@ -11,7 +11,7 @@ namespace MVC_Team_Git_JooleMay.Controllers
 {
     public partial class ProjectController : Controller
     {
-        IService service = new Service();
+        IService _service = new Service();
 
         public ViewResult Index()
         {

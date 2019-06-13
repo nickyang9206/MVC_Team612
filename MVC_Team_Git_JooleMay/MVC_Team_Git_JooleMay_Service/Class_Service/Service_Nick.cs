@@ -50,7 +50,8 @@ namespace MVC_Team_Git_JooleMay_Service.Class_Service
                                HeightMax = r4.HeightMax,
                                HeightMin = r4.HeightMin,
                                Weight = r4.Weight,
-                               ProductImgUrl = r2.ProductImgUrl
+                               ProductImgUrl = r2.ProductImgUrl,
+                               ProductType = r2.ProductType
                            };
             foreach (var item in smResult)
             {
@@ -78,6 +79,7 @@ namespace MVC_Team_Git_JooleMay_Service.Class_Service
                 smProductDetails.HeightMin = item.HeightMin;
                 smProductDetails.Weight = item.Weight;
                 smProductDetails.ProductImgUrl = item.ProductImgUrl;
+                smProductDetails.ProductType = item.ProductType;
                 smProductDetailsList.Add(smProductDetails);
             }
 
@@ -135,52 +137,68 @@ namespace MVC_Team_Git_JooleMay_Service.Class_Service
 
             //added on 0613 07:56 for model year filter
 
-            filteredProductDetails = filteredProductDetails.Where(a => Convert.ToInt32(a.ModelYear) >= Convert.ToInt32(searchResultS_Model.YearStart) && Convert.ToInt32(a.ModelYear) <= Convert.ToInt32(searchResultS_Model.YearEnd)).ToList();
+            filteredProductDetails = filteredProductDetails.Where(a => Convert.ToInt32(a.ModelYear) >= Convert.ToInt32(searchResultS_Model.YearStart)&& Convert.ToInt32(a.ModelYear) <= Convert.ToInt32(searchResultS_Model.YearEnd)).ToList();
 
 
             //added on 0613 07:56 end
-            for (int i = 0; i < searchResultS_Model.VMProductTypeChks.Count(); i++)
+
+
+
+            for (int i = 0; i < searchResultS_Model.ModelTechFilters.Count(); i++)
             {
                 switch (searchResultS_Model.ModelTechFilters[i].PropertyID)
                 {
                     case 1:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.AirFlow <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.AirFlow >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if(searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.AirFlow <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.AirFlow >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 2:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.PowerMax <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.PowerMax >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.PowerMax <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.PowerMax >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 3:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.SoundAtMaxSpeed <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.SoundAtMaxSpeed >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.SoundAtMaxSpeed <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.SoundAtMaxSpeed >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 4:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.FanSweepDiameter <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.FanSweepDiameter >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.FanSweepDiameter <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.FanSweepDiameter >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 5:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.HeightMax <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.HeightMax >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.HeightMax <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.HeightMax >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 6:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.Weight <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.Weight >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.Weight <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.Weight >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 7:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.VAC_Max <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.VAC_Max >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.VAC_Max <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.VAC_Max >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 8:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.FanSpeedMax <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.FanSpeedMax >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.FanSpeedMax <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.FanSpeedMax >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 9:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.NumberofFanSpeed <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.NumberofFanSpeed >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.NumberofFanSpeed <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.NumberofFanSpeed >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 10:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.PowerMin <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.PowerMin >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.PowerMin <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.PowerMin >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 11:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.VAC_Min <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.VAC_Min >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.VAC_Min <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.VAC_Min >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 12:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.FanSpeedMin <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.FanSpeedMin >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.FanSpeedMin <= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.FanSpeedMin >= Convert.ToInt32(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     case 13:
-                        filteredProductDetails = filteredProductDetails.Where(a => a.HeightMin <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.HeightMin >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
+                        if (searchResultS_Model.ModelTechFilters[i].IsActive)
+                            filteredProductDetails = filteredProductDetails.Where(a => a.HeightMin <= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MaxValue) && a.HeightMin >= Convert.ToDecimal(searchResultS_Model.ModelTechFilters[i].MinValue)).ToList();
                         break;
                     default:
                         break;

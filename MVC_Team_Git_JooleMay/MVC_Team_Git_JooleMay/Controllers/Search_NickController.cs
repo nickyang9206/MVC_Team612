@@ -82,6 +82,46 @@ namespace MVC_Team_Git_JooleMay.Controllers
         {
             return PartialView(vMSearchResult.SMProductDetails);
         }
+        //add on 0613-2019 08:37 added search bar in layout page
+        public PartialViewResult SearchBar()
+        {
+            SearchModelS_Model vMSearchModel = new SearchModelS_Model();
+            vMSearchModel.CategoriesList = this.GetCategories();
+            return PartialView(vMSearchModel);
+        }
+        [HttpPost]
+        public JsonResult Autocomplete1(string term, string CategoryID)
+        {
+
+            return Json(getSubCategory(term, Convert.ToInt32(CategoryID)), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult SearchBar(SearchModelS_Model vMSearchModel)
+        {
+            int subCategoryID = Convert.ToInt32(vMSearchModel.SubCategoryID);
+            Session["SessionSubCategoryID"] = subCategoryID;
+            SearchResultS_Model vmSearchResult = new SearchResultS_Model
+            {
+                ModelTechFilters = _service.GetModelTechFilters(subCategoryID),
+                SMProductDetails = _service.GetProductDetails(subCategoryID)
+            };
+            ProductTypeChkS_Model vMProductTypeChk1 = new ProductTypeChkS_Model("Private", false);
+            ProductTypeChkS_Model vMProductTypeChk2 = new ProductTypeChkS_Model("Industrial", false);
+            ProductTypeChkS_Model vMProductTypeChk3 = new ProductTypeChkS_Model("Commercial", false);
+            List<ProductTypeChkS_Model> vMProductTypeChks = new List<ProductTypeChkS_Model>
+            {
+                vMProductTypeChk1,
+                vMProductTypeChk2,
+                vMProductTypeChk3
+            };
+            vmSearchResult.VMProductTypeChks = vMProductTypeChks;
+            vmSearchResult.YearStart = "2010";
+            vmSearchResult.YearEnd = DateTime.Now.Year.ToString();
+            TempData["VMSearchResults"] = vmSearchResult;
+            //return View("SearchResults", vmSearchResult);
+            return RedirectToAction("SearchResults", "Search");
+        }
+        //add on 0613-2019 08:37
 
         private List<SelectListItem> GetCategories()
         {
