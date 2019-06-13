@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="JooleMayEntity.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblManufacture">
+          <Key>
+            <PropertyRef Name="ManufactureID" />
+          </Key>
+          <Property Name="ManufactureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ManufactureName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductModel" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductType" Type="varchar" MaxLength="50" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="ManufactureID" Type="int" Nullable="false" />
+          <Property Name="SeriesID" Type="int" Nullable="false" />
+          <Property Name="TechnicalSpecificationID" Type="int" Nullable="false" />
+          <Property Name="ProductTypeDetailsID" Type="int" Nullable="false" />
+          <Property Name="ProductImgUrl" Type="nchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblProductCategories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProductProperty">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="PropertyName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsTechSpec" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblProductSubCategories">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SubCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProductTypeDetails">
+          <Key>
+            <PropertyRef Name="ProductTypeDetailsID" />
+          </Key>
+          <Property Name="ProductTypeDetailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="50" />
+          <Property Name="Application" Type="varchar" MaxLength="50" />
+          <Property Name="MountainLocation" Type="varchar" MaxLength="50" />
+          <Property Name="Accessories" Type="varchar" MaxLength="50" />
+          <Property Name="ModelYear" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblProject2Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProjectID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSeries">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="int" Nullable="false" />
+          <Property Name="SeriesName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblTechnicalSpecification">
+          <Key>
+            <PropertyRef Name="TechnicalSpecifationID" />
+          </Key>
+          <Property Name="TechnicalSpecifationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="AirFlow" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PowerMin" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="PowerMax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="VAC_Min" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="VAC_Max" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="FanSpeedMin" Type="int" />
+          <Property Name="FanSpeedMax" Type="int" />
+          <Property Name="NumberofFanSpeed" Type="int" />
+          <Property Name="SoundAtMaxSpeed" Type="int" />
+          <Property Name="FanSweepDiameter" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HeightMin" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="HeightMax" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Weight" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'JooleMay.dbo.tblTechSpecFilter' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tblTechSpecFilter">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="PropertyID" Type="int" Nullable="false" />
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="MinValue" Type="int" />
+          <Property Name="MaxValue" Type="int" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PicUrl" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_tblProduct_tblManufacture">
+          <End Role="tblManufacture" Type="Self.tblManufacture" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblManufacture">
+              <PropertyRef Name="ManufactureID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="ManufactureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblProductCategories">
+          <End Role="tblProductCategories" Type="Self.tblProductCategories" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblProductSubCategories">
+          <End Role="tblProductSubCategories" Type="Self.tblProductSubCategories" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductSubCategories">
+              <PropertyRef Name="SubCategoryID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblProductTypeDetails">
+          <End Role="tblProductTypeDetails" Type="Self.tblProductTypeDetails" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductTypeDetails">
+              <PropertyRef Name="ProductTypeDetailsID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="ProductTypeDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblSeries">
+          <End Role="tblSeries" Type="Self.tblSeries" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSeries">
+              <PropertyRef Name="SeriesID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="SeriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblTechnicalSpecification">
+          <End Role="tblTechnicalSpecification" Type="Self.tblTechnicalSpecification" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTechnicalSpecification">
+              <PropertyRef Name="TechnicalSpecifationID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="TechnicalSpecificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProductSubCategories_tblProductCategories">
+          <End Role="tblProductCategories" Type="Self.tblProductCategories" Multiplicity="1" />
+          <End Role="tblProductSubCategories" Type="Self.tblProductSubCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="tblProductSubCategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spGetProductDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductID" Type="int" Mode="In" />
+          <Parameter Name="SubCategoryID" Type="int" Mode="In" />
+          <Parameter Name="Max_AirFlow" Type="decimal" Mode="In" />
+          <Parameter Name="Min_AirFlow" Type="decimal" Mode="In" />
+          <Parameter Name="Max_PowerMin" Type="decimal" Mode="In" />
+          <Parameter Name="Min_PowerMin" Type="decimal" Mode="In" />
+          <Parameter Name="Max_PowerMax" Type="decimal" Mode="In" />
+          <Parameter Name="Min_PowerMax" Type="decimal" Mode="In" />
+          <Parameter Name="Max_VACMin" Type="decimal" Mode="In" />
+          <Parameter Name="Min_VACMin" Type="decimal" Mode="In" />
+          <Parameter Name="Max_VACMAX" Type="decimal" Mode="In" />
+          <Parameter Name="Min_VACMAX" Type="decimal" Mode="In" />
+          <Parameter Name="Max_FanSpeedMin" Type="int" Mode="In" />
+          <Parameter Name="Min_FanSpeedMin" Type="int" Mode="In" />
+          <Parameter Name="Max_FanSpeedMax" Type="int" Mode="In" />
+          <Parameter Name="Min_FanSpeedMax" Type="int" Mode="In" />
+          <Parameter Name="Max_NumberofFanSpeed" Type="int" Mode="In" />
+          <Parameter Name="Min_NumberofFanSpeed" Type="int" Mode="In" />
+          <Parameter Name="Max_SoundAtMaxSpeed" Type="int" Mode="In" />
+          <Parameter Name="Min_SoundAtMaxSpeed" Type="int" Mode="In" />
+          <Parameter Name="Max_FanSweepDiameter" Type="decimal" Mode="In" />
+          <Parameter Name="Min_FanSweepDiameter" Type="decimal" Mode="In" />
+          <Parameter Name="Max_HeightMin" Type="decimal" Mode="In" />
+          <Parameter Name="Min_HeightMin" Type="decimal" Mode="In" />
+          <Parameter Name="Max_HeightMax" Type="decimal" Mode="In" />
+          <Parameter Name="Min_HeightMax" Type="decimal" Mode="In" />
+          <Parameter Name="Max_Weight" Type="decimal" Mode="In" />
+          <Parameter Name="Min_Weight" Type="decimal" Mode="In" />
+        </Function>
+        <EntityContainer Name="JooleMayEntityStoreContainer">
+          <EntitySet Name="tblManufacture" EntityType="Self.tblManufacture" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProduct" EntityType="Self.tblProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProductProperty" EntityType="Self.tblProductProperty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProductSubCategories" EntityType="Self.tblProductSubCategories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProductTypeDetails" EntityType="Self.tblProductTypeDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblProject2Product" EntityType="Self.tblProject2Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSeries" EntityType="Self.tblSeries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTechnicalSpecification" EntityType="Self.tblTechnicalSpecification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblTechSpecFilter" EntityType="Self.tblTechSpecFilter" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tblTechSpecFilter].[PropertyID] AS [PropertyID], 
+    [tblTechSpecFilter].[SubCategoryID] AS [SubCategoryID], 
+    [tblTechSpecFilter].[MinValue] AS [MinValue], 
+    [tblTechSpecFilter].[MaxValue] AS [MaxValue], 
+    [tblTechSpecFilter].[IsActive] AS [IsActive]
+    FROM [dbo].[tblTechSpecFilter] AS [tblTechSpecFilter]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblProduct_tblManufacture" Association="Self.FK_tblProduct_tblManufacture">
+            <End Role="tblManufacture" EntitySet="tblManufacture" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblProductCategories" Association="Self.FK_tblProduct_tblProductCategories">
+            <End Role="tblProductCategories" EntitySet="tblProductCategories" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblProductSubCategories" Association="Self.FK_tblProduct_tblProductSubCategories">
+            <End Role="tblProductSubCategories" EntitySet="tblProductSubCategories" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblProductTypeDetails" Association="Self.FK_tblProduct_tblProductTypeDetails">
+            <End Role="tblProductTypeDetails" EntitySet="tblProductTypeDetails" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblSeries" Association="Self.FK_tblProduct_tblSeries">
+            <End Role="tblSeries" EntitySet="tblSeries" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblTechnicalSpecification" Association="Self.FK_tblProduct_tblTechnicalSpecification">
+            <End Role="tblTechnicalSpecification" EntitySet="tblTechnicalSpecification" />
+            <End Role="tblProduct" EntitySet="tblProduct" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProductSubCategories_tblProductCategories" Association="Self.FK_tblProductSubCategories_tblProductCategories">
+            <End Role="tblProductCategories" EntitySet="tblProductCategories" />
+            <End Role="tblProductSubCategories" EntitySet="tblProductSubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblUser" Association="Self.FK_tblProject_tblUser">
+            <End Role="tblUser" EntitySet="tblUser" />
+            <End Role="tblProject" EntitySet="tblProject" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JooleMayEntity" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblManufacture">
+          <Key>
+            <PropertyRef Name="ManufactureID" />
+          </Key>
+          <Property Name="ManufactureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ManufactureName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblManufacture" FromRole="tblManufacture" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ManufactureID" Type="Int32" Nullable="false" />
+          <Property Name="SeriesID" Type="Int32" Nullable="false" />
+          <Property Name="TechnicalSpecificationID" Type="Int32" Nullable="false" />
+          <Property Name="ProductTypeDetailsID" Type="Int32" Nullable="false" />
+          <Property Name="ProductImgUrl" Type="String" MaxLength="255" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="tblManufacture" Relationship="Self.FK_tblProduct_tblManufacture" FromRole="tblProduct" ToRole="tblManufacture" />
+          <NavigationProperty Name="tblProductCategory" Relationship="Self.FK_tblProduct_tblProductCategories" FromRole="tblProduct" ToRole="tblProductCategories" />
+          <NavigationProperty Name="tblProductSubCategory" Relationship="Self.FK_tblProduct_tblProductSubCategories" FromRole="tblProduct" ToRole="tblProductSubCategories" />
+          <NavigationProperty Name="tblProductTypeDetail" Relationship="Self.FK_tblProduct_tblProductTypeDetails" FromRole="tblProduct" ToRole="tblProductTypeDetails" />
+          <NavigationProperty Name="tblSery" Relationship="Self.FK_tblProduct_tblSeries" FromRole="tblProduct" ToRole="tblSeries" />
+          <NavigationProperty Name="tblTechnicalSpecification" Relationship="Self.FK_tblProduct_tblTechnicalSpecification" FromRole="tblProduct" ToRole="tblTechnicalSpecification" />
+        </EntityType>
+        <EntityType Name="tblProductCategory">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblProductCategories" FromRole="tblProductCategories" ToRole="tblProduct" />
+          <NavigationProperty Name="tblProductSubCategories" Relationship="Self.FK_tblProductSubCategories_tblProductCategories" FromRole="tblProductCategories" ToRole="tblProductSubCategories" />
+        </EntityType>
+        <EntityType Name="tblProductProperty">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="PropertyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsTechSpec" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblProductSubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblProductSubCategories" FromRole="tblProductSubCategories" ToRole="tblProduct" />
+          <NavigationProperty Name="tblProductCategory" Relationship="Self.FK_tblProductSubCategories_tblProductCategories" FromRole="tblProductSubCategories" ToRole="tblProductCategories" />
+        </EntityType>
+        <EntityType Name="tblProductTypeDetail">
+          <Key>
+            <PropertyRef Name="ProductTypeDetailsID" />
+          </Key>
+          <Property Name="ProductTypeDetailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Application" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MountainLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Accessories" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ModelYear" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblProductTypeDetails" FromRole="tblProductTypeDetails" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Name="ProjectID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblProject_tblUser" FromRole="tblProject" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblSery">
+          <Key>
+            <PropertyRef Name="SeriesID" />
+          </Key>
+          <Property Name="SeriesID" Type="Int32" Nullable="false" />
+          <Property Name="SeriesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblSeries" FromRole="tblSeries" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblTechnicalSpecification">
+          <Key>
+            <PropertyRef Name="TechnicalSpecifationID" />
+          </Key>
+          <Property Name="TechnicalSpecifationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="AirFlow" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PowerMin" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="PowerMax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="VAC_Min" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="VAC_Max" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="FanSpeedMin" Type="Int32" />
+          <Property Name="FanSpeedMax" Type="Int32" />
+          <Property Name="NumberofFanSpeed" Type="Int32" />
+          <Property Name="SoundAtMaxSpeed" Type="Int32" />
+          <Property Name="FanSweepDiameter" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HeightMin" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="HeightMax" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Weight" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="tblProducts" Relationship="Self.FK_tblProduct_tblTechnicalSpecification" FromRole="tblTechnicalSpecification" ToRole="tblProduct" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PicUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblProjects" Relationship="Self.FK_tblProject_tblUser" FromRole="tblUser" ToRole="tblProject" />
+        </EntityType>
+        <EntityType Name="tblTechSpecFilter">
+          <Key>
+            <PropertyRef Name="PropertyID" />
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="PropertyID" Type="Int32" Nullable="false" />
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="MinValue" Type="Int32" />
+          <Property Name="MaxValue" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_tblProduct_tblManufacture">
+          <End Role="tblManufacture" Type="Self.tblManufacture" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblManufacture">
+              <PropertyRef Name="ManufactureID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="ManufactureID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblProductCategories">
+          <End Role="tblProductCategories" Type="Self.tblProductCategory" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblProductSubCategories">
+          <End Role="tblProductSubCategories" Type="Self.tblProductSubCategory" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductSubCategories">
+              <PropertyRef Name="SubCategoryID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblProductTypeDetails">
+          <End Role="tblProductTypeDetails" Type="Self.tblProductTypeDetail" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductTypeDetails">
+              <PropertyRef Name="ProductTypeDetailsID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="ProductTypeDetailsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblSeries">
+          <End Role="tblSeries" Type="Self.tblSery" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSeries">
+              <PropertyRef Name="SeriesID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="SeriesID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProduct_tblTechnicalSpecification">
+          <End Role="tblTechnicalSpecification" Type="Self.tblTechnicalSpecification" Multiplicity="1" />
+          <End Role="tblProduct" Type="Self.tblProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTechnicalSpecification">
+              <PropertyRef Name="TechnicalSpecifationID" />
+            </Principal>
+            <Dependent Role="tblProduct">
+              <PropertyRef Name="TechnicalSpecificationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProductSubCategories_tblProductCategories">
+          <End Role="tblProductCategories" Type="Self.tblProductCategory" Multiplicity="1" />
+          <End Role="tblProductSubCategories" Type="Self.tblProductSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProductCategories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="tblProductSubCategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblUser">
+          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JooleMayEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblManufactures" EntityType="Self.tblManufacture" />
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblProductCategories" EntityType="Self.tblProductCategory" />
+          <EntitySet Name="tblProductProperties" EntityType="Self.tblProductProperty" />
+          <EntitySet Name="tblProductSubCategories" EntityType="Self.tblProductSubCategory" />
+          <EntitySet Name="tblProductTypeDetails" EntityType="Self.tblProductTypeDetail" />
+          <EntitySet Name="tblProjects" EntityType="Self.tblProject" />
+          <EntitySet Name="tblSeries" EntityType="Self.tblSery" />
+          <EntitySet Name="tblTechnicalSpecifications" EntityType="Self.tblTechnicalSpecification" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblTechSpecFilters" EntityType="Self.tblTechSpecFilter" />
+          <AssociationSet Name="FK_tblProduct_tblManufacture" Association="Self.FK_tblProduct_tblManufacture">
+            <End Role="tblManufacture" EntitySet="tblManufactures" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblProductCategories" Association="Self.FK_tblProduct_tblProductCategories">
+            <End Role="tblProductCategories" EntitySet="tblProductCategories" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblProductSubCategories" Association="Self.FK_tblProduct_tblProductSubCategories">
+            <End Role="tblProductSubCategories" EntitySet="tblProductSubCategories" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblProductTypeDetails" Association="Self.FK_tblProduct_tblProductTypeDetails">
+            <End Role="tblProductTypeDetails" EntitySet="tblProductTypeDetails" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblSeries" Association="Self.FK_tblProduct_tblSeries">
+            <End Role="tblSeries" EntitySet="tblSeries" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProduct_tblTechnicalSpecification" Association="Self.FK_tblProduct_tblTechnicalSpecification">
+            <End Role="tblTechnicalSpecification" EntitySet="tblTechnicalSpecifications" />
+            <End Role="tblProduct" EntitySet="tblProducts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProductSubCategories_tblProductCategories" Association="Self.FK_tblProductSubCategories_tblProductCategories">
+            <End Role="tblProductCategories" EntitySet="tblProductCategories" />
+            <End Role="tblProductSubCategories" EntitySet="tblProductSubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblUser" Association="Self.FK_tblProject_tblUser">
+            <End Role="tblUser" EntitySet="tblUsers" />
+            <End Role="tblProject" EntitySet="tblProjects" />
+          </AssociationSet>
+          <FunctionImport Name="spGetProductDetails">
+            <Parameter Name="ProductID" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="Max_AirFlow" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_AirFlow" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_PowerMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_PowerMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_PowerMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_PowerMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_VACMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_VACMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_VACMAX" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_VACMAX" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_FanSpeedMin" Mode="In" Type="Int32" />
+            <Parameter Name="Min_FanSpeedMin" Mode="In" Type="Int32" />
+            <Parameter Name="Max_FanSpeedMax" Mode="In" Type="Int32" />
+            <Parameter Name="Min_FanSpeedMax" Mode="In" Type="Int32" />
+            <Parameter Name="Max_NumberofFanSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Min_NumberofFanSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Max_SoundAtMaxSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Min_SoundAtMaxSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Max_FanSweepDiameter" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_FanSweepDiameter" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_HeightMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_HeightMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_HeightMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_HeightMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_Weight" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_Weight" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="tblProject2Product" EntityType="JooleMayEntity.tblProject2Product" />
+        </EntityContainer>
+        <EntityType Name="tblProject2Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProjectID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="0" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JooleMayEntityStoreContainer" CdmEntityContainer="JooleMayEntities">
+          <EntitySetMapping Name="tblManufactures">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblManufacture">
+              <MappingFragment StoreEntitySet="tblManufacture">
+                <ScalarProperty Name="ManufactureID" ColumnName="ManufactureID" />
+                <ScalarProperty Name="ManufactureName" ColumnName="ManufactureName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProduct">
+              <MappingFragment StoreEntitySet="tblProduct">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductModel" ColumnName="ProductModel" />
+                <ScalarProperty Name="ProductType" ColumnName="ProductType" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="ManufactureID" ColumnName="ManufactureID" />
+                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+                <ScalarProperty Name="TechnicalSpecificationID" ColumnName="TechnicalSpecificationID" />
+                <ScalarProperty Name="ProductTypeDetailsID" ColumnName="ProductTypeDetailsID" />
+                <ScalarProperty Name="ProductImgUrl" ColumnName="ProductImgUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductCategories">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProductCategory">
+              <MappingFragment StoreEntitySet="tblProductCategories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductProperties">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProductProperty">
+              <MappingFragment StoreEntitySet="tblProductProperty">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="PropertyName" ColumnName="PropertyName" />
+                <ScalarProperty Name="IsTechSpec" ColumnName="IsTechSpec" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductSubCategories">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProductSubCategory">
+              <MappingFragment StoreEntitySet="tblProductSubCategories">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProductTypeDetails">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProductTypeDetail">
+              <MappingFragment StoreEntitySet="tblProductTypeDetails">
+                <ScalarProperty Name="ProductTypeDetailsID" ColumnName="ProductTypeDetailsID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Application" ColumnName="Application" />
+                <ScalarProperty Name="MountainLocation" ColumnName="MountainLocation" />
+                <ScalarProperty Name="Accessories" ColumnName="Accessories" />
+                <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSeries">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblSery">
+              <MappingFragment StoreEntitySet="tblSeries">
+                <ScalarProperty Name="SeriesID" ColumnName="SeriesID" />
+                <ScalarProperty Name="SeriesName" ColumnName="SeriesName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTechnicalSpecifications">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblTechnicalSpecification">
+              <MappingFragment StoreEntitySet="tblTechnicalSpecification">
+                <ScalarProperty Name="TechnicalSpecifationID" ColumnName="TechnicalSpecifationID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="AirFlow" ColumnName="AirFlow" />
+                <ScalarProperty Name="PowerMin" ColumnName="PowerMin" />
+                <ScalarProperty Name="PowerMax" ColumnName="PowerMax" />
+                <ScalarProperty Name="VAC_Min" ColumnName="VAC_Min" />
+                <ScalarProperty Name="VAC_Max" ColumnName="VAC_Max" />
+                <ScalarProperty Name="FanSpeedMin" ColumnName="FanSpeedMin" />
+                <ScalarProperty Name="FanSpeedMax" ColumnName="FanSpeedMax" />
+                <ScalarProperty Name="NumberofFanSpeed" ColumnName="NumberofFanSpeed" />
+                <ScalarProperty Name="SoundAtMaxSpeed" ColumnName="SoundAtMaxSpeed" />
+                <ScalarProperty Name="FanSweepDiameter" ColumnName="FanSweepDiameter" />
+                <ScalarProperty Name="HeightMin" ColumnName="HeightMin" />
+                <ScalarProperty Name="HeightMax" ColumnName="HeightMax" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PicUrl" ColumnName="PicUrl" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblTechSpecFilters">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblTechSpecFilter">
+              <MappingFragment StoreEntitySet="tblTechSpecFilter">
+                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spGetProductDetails" FunctionName="JooleMayEntity.Store.spGetProductDetails" />
+          <EntitySetMapping Name="tblProject2Product">
+            <EntityTypeMapping TypeName="JooleMayEntity.tblProject2Product">
+              <MappingFragment StoreEntitySet="tblProject2Product">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

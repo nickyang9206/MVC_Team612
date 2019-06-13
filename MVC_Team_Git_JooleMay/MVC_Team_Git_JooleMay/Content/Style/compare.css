@@ -1,0 +1,29 @@
+﻿a {
+    text-decoration:none;
+}
+.container {
+    border: 1px solid #E0E0E0;
+}
+table{
+    border-spacing:0px;
+}
+.inlinetable {
+    border-collapse: collapse;
+    border: 1px solid #E0E0E0;
+}
+th {
+    border: 1px solid #E0E0E0;
+    background-color: #F0F0F0;
+}
+tr {
+    border: 1px solid #E0E0E0;
+    text-align:center;
+}
+td {
+    border: 1px solid #E0E0E0;
+}
+#image {
+    width:200px;
+    height:150px;
+
+}

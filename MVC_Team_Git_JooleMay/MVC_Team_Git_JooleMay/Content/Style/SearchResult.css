@@ -1,0 +1,135 @@
+﻿.split {
+    position: fixed;
+    z-index: 1;
+    /*overflow-x: hidden;*/
+    padding-top: 10px;
+    height: 100%;
+}
+
+/* Control the left side */
+.left {
+    left: 0;
+    width: 25%;
+    `
+}
+
+.filterBlock {
+    border: 1px solid lightgray;
+    border-width: 2px;
+    border-radius: 1px;
+    /*padding-left: 5px;
+    padding-right: 5px;*/
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 55px;
+}
+
+.triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 2px solid transparent;
+    border-right: 2px solid transparent;
+    border-top: 5px solid #555;
+}
+
+.but {
+    background-color: skyblue;
+    /*border-radius: 4px;*/
+    width: 60px;
+    height: 30px;
+    border-style: none;
+}
+
+#save {
+    margin-left: 60px;
+}
+
+#clear {
+    margin-left: 20px;
+}
+/* Control the right side */
+.right {
+    right: 0;
+    width: 75%;
+}
+
+#product {
+    border-right: 1px solid lightgray;
+    padding-right: 30px;
+}
+
+#project {
+    padding-left: 30px;
+}
+
+.bar a {
+    text-decoration: none;
+}
+
+.productBlock {
+    padding-left: 10px;
+}
+
+    .productBlock .block {
+        content: ".";
+        width: 30%;
+        height: 30%;
+        border: 1px solid lightgray;
+        display: inline;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+hr {
+    margin-left: -10px;
+    color: lightgray;
+    margin-right: -10px;
+}
+
+.tech {
+    display: none;
+}
+
+.showProduct {
+    display: inline;
+    width: 30%;
+    height: 40%;
+}
+
+#modelyear {
+    font-weight: bold;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+#textbox {
+    width: 40px;
+    /*padding-left: 10px;*/
+    margin-left: 20px;
+}
+
+#space {
+    padding-left: 20px;
+}
+
+input {
+    width: 50px;
+}
+
+#item_MaxValue {
+    margin-left: 165px;
+}
+
+.slider span {
+    border-radius: 50%;
+}
+/*.slider span:nth-child
+    F(2n) {
+    left: 0% !important;
+}*/
+/*.slider span:nth-child(2n+1) {
+    left: 97% !important;
+}*/
+/*.slider span.ui-slider-handle.ui-corner-all.ui-state-default {
+        left: 97% !important;
+    }*/

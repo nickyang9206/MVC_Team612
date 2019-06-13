@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("Styles", false)
+    <link href="@Url.Content("~/Content/Style/LoginPage.css")" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="content">
+        <h1 id="logoname">j<span class="circle-overlaping"></span><span id="logonametwo">le</span></h1>
+        <p id="sign">Building Product Selection Platform</p>
+    </div>
+    <div class="content body-content" id="content">
+        @RenderBody()
+    </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts", required: false)
+</body>
+</html>

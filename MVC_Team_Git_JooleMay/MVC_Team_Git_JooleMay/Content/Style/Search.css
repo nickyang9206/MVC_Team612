@@ -1,0 +1,29 @@
+﻿﻿#form {
+    padding-top: 10px;
+}
+
+.textbox {
+    width: 200px;
+    border-radius: 3px;
+    height: 20px;
+}
+#inputbutton {
+    background: url(https://img.icons8.com/material/24/000000/search.png) no-repeat;
+    background-color: steelblue;
+    border-radius: 3px;
+    height: 25px;
+    width: 30px;
+    border: none;
+    padding-bottom: 8px;
+}
+
+.dropdown {
+    background-color: steelblue;
+    border-radius: 3px;
+    height: 25px;
+    border: none;
+}
+
+    .dropdown option {
+        background-color: white;
+    }

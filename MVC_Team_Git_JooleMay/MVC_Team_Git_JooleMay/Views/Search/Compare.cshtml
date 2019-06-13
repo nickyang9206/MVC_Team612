@@ -1,0 +1,261 @@
+﻿@model IEnumerable<MVC_Team_Git_JooleMay_Service.Models.SMProductDetails>
+
+@{
+    ViewBag.Title = "Compare";
+    Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+
+@section Styles {
+    <link href="@Url.Content("~/Content/Style/compare.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="bar">
+    <p>
+        @Html.ActionLink("Category", "Index", "Home", null, new { @class = "active" })
+        <span>></span>
+        @Html.ActionLink("Subcategory", "Details", "Home")
+        <span>></span>
+        @Html.ActionLink("Compare", "Contact", "Home")
+        @*@Html.ActionLink("Contact", "Contact", "Home")*@
+    </p>
+</div>
+<div class="container">
+    <table class="inlineTable">
+        <tbody>
+            <tr>
+                <td></td>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        <img src="@item.ProductImgUrl" id="image">
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th id="header">DESCRIPTION</th>
+                @foreach (var item in Model)
+                {
+                    <th style="border:none"></th>
+                }
+
+                @*<th style="border-right:none;"></th>
+        <th style="border-left:none;border-right:none;"></th>
+        <th style="border-left:none;"></th>*@
+            </tr>
+            <tr>
+                <th>Manufacture</th>
+                @foreach (var item in Model)
+                {
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ManufactureName)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Series</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeriesName)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Model</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModelName)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th id="header">TYPE</th>
+                @foreach (var item in Model)
+                {
+                  <th style="border:none"></th>
+                }
+                @*<th style="border-right:none;"></th>
+        <th style="border-left:none;border-right:none;"></th>
+        <th style="border-left:none;"></th>*@
+            </tr>
+            <tr>
+                <th>Use Type</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserType)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Application</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Application)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Mounting Location</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MountainLocation)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Accessories</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Accessories)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Model Year</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ModelYear)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th id="header">TECHNICAL  SPECIFICATIONS</th>
+                @foreach (var item in Model)
+                {
+                    <th style="border:none"></th>
+                }
+                @*<th style="border-right:none;"></th>
+        <th style="border-left:none;border-right:none;"></th>
+        <th style="border-left:none;"></th>*@
+            </tr>
+            <tr>
+                <th>Air Flow(CFM)</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AirFlow)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Power-Min(W)</th>
+
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PowerMin)
+                    </td>
+                }
+            </tr>
+
+            <tr>
+                <th>Power-Max(W)</th>
+
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PowerMax)
+                    </td>
+                }
+            </tr>
+
+            <tr>
+                <th>Operating Voltage(VAC)-Min</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VAC_Min)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Operating Voltage(VAC)-Max</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VAC_Max)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Fan Speed(RPM)-Min</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FanSpeedMin)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Fan Speed(RPM)-Max</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FanSpeedMax)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Number of fan speeds</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberofFanSpeed)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Sound at max speed(dBA)</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SoundAtMaxSpeed)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Fan sweep diameter(m)</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FanSweepDiameter)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Height(in)-Min</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HeightMin)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Height(in)-Max</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HeightMax)
+                    </td>
+                }
+            </tr>
+            <tr>
+                <th>Weight(lbs)</th>
+                @foreach (var item in Model)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Weight)
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>

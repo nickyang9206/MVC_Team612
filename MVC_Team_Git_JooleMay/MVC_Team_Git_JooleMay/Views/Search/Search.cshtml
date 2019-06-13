@@ -1,0 +1,75 @@
+@model MVC_Team_Git_JooleMay_Service.Models.SearchModelS_Model
+
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/LoginPage.cshtml";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    @*<meta charset=utf-8 />*@
+    <link href="@Url.Content("~/Content/Style/Search.css")" rel="stylesheet" type="text/css" />
+}
+
+
+@using (Html.BeginForm("Search", "Search", FormMethod.Post, new { id = "form" }))
+{
+    @Html.HiddenFor(model => model.SubCategoryID)
+    @Html.DropDownList("ddlCategories", Model.CategoriesList, new { @class = "dropdown" })
+    @Html.TextBox("searchBox", null, new { @class = "textbox" })
+    //<input type="search" id="searchBox" style="width:250px" name="term" />
+    //<input type="button" value="Search" class="btn btn-primary" onclick="location.href='@Url.Action("Search", "Search" )'" />
+    <input type="submit" value="" class="btn btn-default" id="inputbutton" />
+}
+
+
+
+
+
+@section scripts{
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+
+    <script type="text/javascript">
+
+        //$("#searchBox").autocomplete({
+
+        //    source: "/Search/Autocomplete",
+        //    data: { searchText: request.term, maxResults: 10 },
+        //    minLength: 1,
+
+        //    select: function (event, ui) {
+
+        //        alert("Select " + ui.item.label);
+
+        //    }
+
+        //});
+
+        $(function () {
+
+            $("#searchBox").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/Search/Autocomplete", type: "POST", dataType: "json",
+                        data: {
+                            term: request.term,
+                            CategoryID: $("#ddlCategories").val(),
+                            maxResults: 10
+                        },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.SubCategoryName, value: item.SubCategoryName, id: item.SubCategoryID }
+                            }))
+                        }
+                    })
+                },
+                select: function (event, ui) {
+                    $("#SubCategoryID").val(ui.item.id);
+                }
+            });
+
+        });
+    </script>
+}
