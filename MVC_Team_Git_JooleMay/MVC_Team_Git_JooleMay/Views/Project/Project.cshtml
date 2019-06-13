@@ -1,0 +1,80 @@
+﻿@model MVC_Team_Git_JooleMay.Models.VMProject
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+
+<h2>Your Project List</h2>
+<table width="90%" align="center">
+    <thead>
+        <tr>
+            <th align="left">Project Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Hidden("ProductId", Model.ProductID)
+        <tr>
+            @foreach (var item in Model.ProjectList)
+            {
+
+                <td align="left">@item.ProjectName</td>
+
+            }
+        <tr>
+            @*@foreach (var item in Model.ProjectList)
+            {*@
+                <td>
+                    <img src="@Model.ProductDetails.ProductImgUrl" style="width:80px;height:60px">
+                </td>
+
+            @*}*@
+
+        </tr>
+        <tr>
+            @foreach (var item in Model.ProjectList)
+            {
+                <td>@Html.DisplayFor(modelItem => Model.ProductDetails.ManufactureName)</td>
+            }
+
+        </tr>
+        <tr>
+            @foreach (var item in Model.ProjectList)
+            {
+
+                <td>@Html.DisplayFor(modelItem => Model.ProductDetails.SeriesName)</td>
+            }
+
+        </tr>
+        <tr>
+            @foreach (var item in Model.ProjectList)
+            {
+
+                <td>@Html.DisplayFor(modelItem => Model.ProductDetails.ModelName)</td>
+            }
+
+        </tr>
+        <tr>
+            @foreach (var item in Model.ProjectList)
+            {
+                <td>@Html.DisplayFor(modelItem => Model.ProductDetails.ModelYear)</td>
+            }
+
+        </tr>
+        <tr>
+            @foreach (var item in Model.ProjectList)
+            {
+            <td>
+                @Html.ActionLink("Add to Project", "AddToProject", new { projectID = item.ProjectID, productID = Model.ProductID },
+                   new{ onclick = "return confirm('Added to Your Project!')" }) 
+                @Html.ActionLink("Remove", "Delete", new { projectID = item.ProjectID, productID = Model.ProductID })
+            </td>
+
+            }
+
+        </tr>
+
+
+
+
+    </tbody>
+    </table>
