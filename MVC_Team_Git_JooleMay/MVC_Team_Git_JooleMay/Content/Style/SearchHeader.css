@@ -1,0 +1,125 @@
+﻿body {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+}
+
+.header {
+    background: linear-gradient(to top,white,rgb(32,140,185)) no-repeat;
+    height: 160px;
+    margin-right: 0px;
+    margin-top: 0px;
+    margin-bottom: -20px;
+}
+
+#container {
+    display: flex;
+    justify-content: space-between;
+}
+
+#logoname {
+    font-weight: bold;
+    font-family: Sans-serif;
+    font-size: 50px;
+    height: 10px;
+    color: darkblue;
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+#sign {
+    font-family: Arial;
+    font-weight: bold;
+}
+
+h1 {
+    padding-bottom: 5px;
+}
+
+#logonametwo {
+    font-size: 60px;
+    margin-left: 95px;
+}
+
+.circle-overlaping::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 35px;
+    background-color: deepskyblue;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    shape-outside: circle(50% at 0 0);
+}
+
+.circle-overlaping::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 70px;
+    background-color: darkblue;
+    width: 50px;
+    height: 40px;
+    border-radius: 50%;
+    shape-outside: circle(50% at 0 0);
+}
+
+.search {
+    text-align: center;
+    height: 40px;
+}
+
+.btn-info {
+    background-color: steelblue;
+    border-radius: 3px;
+    height: 25px;
+}
+
+.nocolor {
+    background-color: white;
+}
+
+.searchbar {
+    position: relative;
+    width: 350px;
+    height: 40px;
+    border: 0;
+    padding: 0;
+    margin-right: 0px;
+    margin-top: 50px;
+}
+
+.searchbar .btn-search {
+        width: 200px;
+        border-radius: 3px;
+        height: 25px;
+    }
+
+select:invalid {
+    color: gray;
+}
+
+select:invalid option:first-child {
+        color: gray;
+    }
+
+select:invalid option:not(:first-child) {
+        color: black;
+    }
+
+#circle {
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    background-color:lightgray;
+    margin-top:20px;
+    margin-right:100px;
+}
+#content {
+    margin-left: 10px;
+    margin-right:10px;
+}

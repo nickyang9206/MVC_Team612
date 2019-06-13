@@ -1,0 +1,126 @@
+﻿@{
+                /**/
+
+                ViewBag.Title = "SearchResults";
+                Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+@section Styles {
+    <link href="@Url.Content("~/Content/Style/list.css")" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.6.1/bootstrap-slider.js" rel="stylesheet" type="text/css">
+
+}
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+<div class="split left">
+    <div class="filterBlock">
+        <p>Search:      <input class="but" id="save" type="button" value="Save" /><input class="but" id="clear" type="button" value="Clear" /></p>
+        @*<div style="padding-bottom: 5px; text-align: center;border:1px solid grey">Search: <input type="submit" style="margin-left:20px" class="btn-primary" value="Save"> <button style="margin-left:10px;" class="btn-primary" id="clear">Clear</button></div>*@
+        <hr style="margin-bottom:-1px;">
+        <div style="padding-top: 1px; text-align: center;">
+            <label id="product">Product</label>
+            <label id="project">Project</label>
+        </div>
+        <hr style="margin-top:-2px;" />
+        <div style="padding-top: 1px; padding-bottom: 1px;">
+            Product Type
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            <img src="https://img.icons8.com/ios/20/000000/sort-down-filled.png" style="margin-left: 115px;" id="clickType">
+        </div>
+        <div class="tech" id="producttype">
+            <hr />
+            adgakjf
+        </div>
+        <hr />
+        <div style="padding-top: 1px; padding-bottom: 1px;">
+            Model Year:
+            <input type="text" name="beginningYear" style="margin-left:10px;margin-right:10px;" maxlength="4" size="4">  -- <input type="text" style="margin-left:10px" name="endingYear" maxlength="4" size="4">
+        </div>
+        <hr />
+        <div style="display:inline">Techinical Specfical &nbsp;<img src="https://img.icons8.com/ios/20/000000/sort-down-filled.png" style="margin-left:90px;" id="clickimg"></div>
+        <div class="tech" style="margin-bottom:5px;" id="tech">
+            <hr />
+            <p>
+                <label for="airflow-amount">Airflow (CFM) </label><br />
+                @*<b>€ 10</b> <input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]" /> <b>€ 1000</b>*@
+                @*<input type="text" id="airflow-amount" readonly style="border:1px solid black; color:#f6931f; font-weight:bold;">*@
+            </p>
+            <div class="demo">
+                <div id="airflow-slider"></div>
+            </div>
+            <p>
+                <label for="power-amount">Max Power (W) </label><br />
+                <input type="text" id="power-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div class="demo">
+                <div id="power-slider"></div>
+            </div>
+            <p>
+                <label for="sound-amount">Sound at max speed (dBA)</label><br />
+                <input type="text" id="sound-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div class="demo">
+                <div id="sound-slider"></div>
+            </div>
+            <p>
+                <label for="sweep-amount">Fan sweep diameter (in) </label><br />
+                <input type="text" id="sweep-amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+            </p>
+            <div class="demo">
+                <div id="sweep-slider"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="split right">
+    <div class="productBlock">
+        <div class="bar">
+            <p>
+                @*reminder:there should be clickable and link for redict need to be edited*@
+                @Html.ActionLink("Subcategory", "Index", "Home", null, new { @class = "active" })
+                <span>></span>
+                @Html.ActionLink("category", "Details", "Home")
+            </p>
+        </div>
+        <div class="showProduct">
+            <div class="block">
+                agjfgskf
+                afgkjahfkw
+            </div>
+        </div>
+
+        &nbsp;
+        <div class="showProduct">
+            <div class="block">
+                ahdashfhfksfhwk
+                afgjkhfksafd
+            </div>
+        </div>
+        &nbsp;
+        <div class="showProduct">
+            <div class="block">
+                afgsakfgsjaf
+                afgfhskafhwfh
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+
+        $("#clickimg").on("click", function () {
+            $("#tech").toggleClass("tech");
+        });
+        $("#clickType").on("click", function () {
+            $("#producttype").toggleClass("tech");
+        });
+    </script>}
+
