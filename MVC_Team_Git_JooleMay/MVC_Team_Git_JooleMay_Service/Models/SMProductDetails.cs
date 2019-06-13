@@ -11,7 +11,7 @@ namespace MVC_Team_Git_JooleMay_Service.Models
         public int ProductID { get; set; }
         public int ManufactureID { get; set; }
         public string ManufactureName { get; set; }
-
+        public string ProductType { get; set; }
         public int SeriesID { get; set; }
         public string SeriesName { get; set; }
         public string ProductModel { get; set; }

@@ -11,5 +11,6 @@ namespace MVC_Team_Git_JooleMay_Service.Interface_Service
     {
         List<SMProductDetails> GetProductDetails(int? _subCategoryID);
         List<ModelTechFilter> GetModelTechFilters(int? _sbuCategoryID);
+        List<SMProductDetails> GetFiltered(SearchResultS_Model searchResultS_Model, int SubCategoryID);
     }
 }

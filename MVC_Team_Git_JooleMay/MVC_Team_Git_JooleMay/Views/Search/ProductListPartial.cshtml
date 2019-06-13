@@ -5,28 +5,32 @@
         <form style=" padding:5px">
             @foreach (var product in Model)
             {
-            <div id="@Html.DisplayFor(modelItem => product.ProductID)" style="float:left;margin-left:10px;margin-top:10px;border: 3px solid gray; text-align: center; display: inline-block; width: 200px; height: 400px;">
-                    <img src="@product.ProductImgUrl" id="image" style="width:200px;height:150px;" onclick="location.href='@Url.Action("Index", "Search", new { id = product.ProductID })'"/>
-                    <br />
-                    <b>@Html.DisplayFor(modelItem => product.ManufactureName)</b>
-                    <br />
-                    <b>@Html.DisplayFor(modelItem => product.SeriesName)</b><br />
-                    <b>@Html.DisplayFor(modelItem => product.ProductModel)</b><br />
-                    @*@foreach (var c in product.Specifications)
-            {
-                @Html.DisplayFor(modelItem => specifications)<br />
-            }
-            @Html.DisplayFor(modelItem => product.Specifications)<br />*@
-                    @*@using (Html.BeginForm("Compare", "Search", FormMethod.Post))
-            {*@
-                    <input type="checkbox" name="compare" id=@Html.DisplayFor(modelItem => product.ProductID) value=@Html.DisplayFor(modelItem => product.ProductID) /> <b>Compare</b>
+            <div id="@Html.DisplayFor(modelItem => product.ProductID)" style="float:left; margin-left:10px;margin-top:10px;border: 3px solid gray; text-align: center; display: inline-block; width: 200px; height: 400px;">
+                <img src="@product.ProductImgUrl" id="image" style="width:200px;height:150px;" onclick="location.href='@Url.Action("Index", "Search", new { id = product.ProductID })'" />
+                <br />
+                <b>@Html.DisplayFor(modelItem => product.ManufactureName)</b>
+                <br />
+                <b>@Html.DisplayFor(modelItem => product.SeriesName) Series</b><br />
+                <b>@Html.DisplayFor(modelItem => product.ModelName)</b><br />
+                <br />
+                <span>@Html.DisplayFor(modelItem => product.AirFlow) CFM</span><br />
+                <span>@Html.DisplayFor(modelItem => product.PowerMax)W  at max speed</span><br />
+                <span>@Html.DisplayFor(modelItem => product.SoundAtMaxSpeed) dBA  at max speed</span><br />
+                <span>@Html.DisplayFor(modelItem => product.FanSweepDiameter)" sweep diameter</span>
+                <br />
+                <br />
+                <br />
+                <br />
+                
+               
+                <input type="checkbox" name="compare" style="width: 15px;margin-left: -20px;" id=@Html.DisplayFor(modelItem => product.ProductID) value=@Html.DisplayFor(modelItem => product.ProductID) /> <b>Compare</b>
 
-                    <button type="button" value="Add to" onclick="location.href='@Url.Action("Project", "Project", new { productID = product.ProductID })'">Add to</button>
+                <button type="button" value="Add to" style="color:white;background-color:steelblue;border:none;border-radius:2px;width:60px;height:30px;" onclick="location.href='@Url.Action("Project", "Project", new { productID = product.ProductID })'">Add to</button>
 
             </div>
             }
         </form>
-        <button class="btnRedirect" id="ProductList" type="button" value="Comparison">Comparison</button>
+        <button class="btnRedirect" id="ProductList" type="button" value="Comparison"  style="background-color:steelblue;color:white;border:none; width:100px;height: 30px;margin-top: 10px;border-radius:2px;">Comparison</button>
     </div>
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
@@ -56,32 +60,7 @@
             })
            
         });
-    //     var Compare = function () {
-            //var arrProduct = [];
-            //var commaSeperatedIds = "";
-            //$("#ProductList form input[type=checkbox]").each(function (index, val) {
-            //debugger
-            //var checkID = $(val).attr("Id");
-
-            //var isChecked = $("#" + checkID).is(":checked", true);
-
-            //if (isChecked) {
-            //    arrProduct.push(checkID);
-            //}
-            //if (arrProduct.length != 0) {
-            //    commaSeperatedIds = arrProduct.toString();
-            //}
-    //        $.ajax({
-    //            url = "/Search/Compare",
-    //            type: "Post",
-    //            data: { ProductList: commaSeperatedIds },
-    //            success: function (response) {
-
-    //            }
-    //        })
-    //    })
-    //};
-
+    
     });
        
     

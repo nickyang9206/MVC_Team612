@@ -1,6 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Configuration;
 using System.Linq;
 using System.Web;
@@ -22,30 +24,23 @@ namespace MVC_Team_Git_JooleMay.Models
         [Required(ErrorMessage = "Email name is empty")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Confirm password is empty")]
+        [NotMapped]
+        [Compare("Password")]
+        [DisplayName("Confirm password")]
         public string ConfirmPassword { get; set; }
         public string ImageUrl { get; set; }
-        public HttpPostedFileWrapper ImageFile { get; set; }
         public string ValidMessage { get; set; }
 
 
 
 
 
-     
-
-        
 
 
-        private static string GetImage(string imageUrl, int id)
-        {
-            var imageUrlFormated = "/image/defaultImage.png";
-            if (!string.IsNullOrEmpty(imageUrl))
-            {
-                imageUrlFormated = $"{ConfigurationManager.AppSettings["UserLoginImageUploadBase"].Replace("~", "")}/{id}/{imageUrl}";
-            }
-            return imageUrlFormated;
-        }
 
+
+
+      
 
 
     }

@@ -12,7 +12,7 @@ namespace MVC_Team_Git_JooleMay_Service.Interface_Service
     {
         string checkUserLogin(string userName, string password);
 
-        void Insert(tblUser userDB);
+        string Insert(tblUser userDB);
 
         
     }

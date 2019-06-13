@@ -380,7 +380,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="image\0\me.jpg" />
     <Content Include="image\defaultImage.png" />
     <Content Include="js\loginpage.js" />
     <Content Include="js\modalpopupwindow.js" />
@@ -457,6 +456,7 @@
     <Content Include="Views\LoginPage\DoLogin.cshtml" />
     <Content Include="Views\Shared\_Login.cshtml" />
     <Content Include="Views\Shared\_Register.cshtml" />
+    <Content Include="Views\Search\SearchBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Project\Project.cshtml" />

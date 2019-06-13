@@ -11,5 +11,6 @@ namespace MVC_Team_Git_JooleMay_Service.Interface_Service
     {
         SMProductDetails getDetails(int? _productID);
     }
+   
 
 }

@@ -1,4 +1,4 @@
-﻿using MVC_Team_Git_JooleMay_DAL;
+using MVC_Team_Git_JooleMay_DAL;
 using MVC_Team_Git_JooleMay_Repository.Class_Repository;
 using MVC_Team_Git_JooleMay_Repository.Interface_Repository;
 using MVC_Team_Git_JooleMay_Service.Interface_Service;
@@ -48,35 +48,25 @@ namespace MVC_Team_Git_JooleMay_Service.Class_Service
             return msg;
         }
 
-        public void Insert(tblUser userDB)
+        public string Insert(tblUser userDB)
         {
             string msg = "";
-            IUnitOfWork unitOfWork = new UnitOfWork(new JooleMayEntities());
+            //IUnitOfWork unitOfWork = new UnitOfWork(new JooleMayEntities());
             var allUserDB = unitOfWork.UserRepo.GetALL().ToList();
             var singleUserDB = allUserDB.Where(p => (p.Email == userDB.Email)).ToList();
 
-            if (singleUserDB.Count < 1)
+            if (singleUserDB.Count == 0)
             {
-                if (userDB.PicUrl == null)
-                {
-                    userDB.PicUrl = "defaultImage.png";
-                }
-
                 unitOfWork.UserRepo.Insert(userDB);
-                //unitOfWork.UserRepo.SaveChanges();
-
+                unitOfWork.UserRepo.SaveChanges();
+                msg = "User added successful";
             }
-            else { msg = "User already exist"; }
+            else { msg = "User with this email, already exist"; }
 
-
-
-
-
-            //cookie = new HttpCookie("UserLogin");
-            //cookie["ID"] = user.UserID.ToString();
-            //cookie["PicUrl"] = user.PicUrl.ToString();
-
-
+            return msg;
         }
+
+
+
     }
 }

@@ -17,9 +17,10 @@ namespace MVC_Team_Git_JooleMay
                 name: "Default",
                 url: "{controller}/{action}/{id}",
 
-                //defaults: new { controller = "Search_MeiController", action = "Index", id = UrlParameter.Optional }
-                defaults: new { controller = "Search", action = "Search", id = UrlParameter.Optional }
+                // defaults: new { controller = "Search_MeiController", action = "Index", id = UrlParameter.Optional }
+                // //defaults: new { controller = "Search", action = "Search", id = UrlParameter.Optional }
 
+                defaults: new { controller = "LoginPage", action = "DoLogin", id = UrlParameter.Optional }
             );
         }
     }

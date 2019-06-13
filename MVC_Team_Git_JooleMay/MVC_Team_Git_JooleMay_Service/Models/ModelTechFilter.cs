@@ -14,6 +14,6 @@ namespace MVC_Team_Git_JooleMay_Service.Models
         public int SubCategoryID { get; set; }
         public int? MinValue { get; set; }
         public int? MaxValue { get; set; }
-        public bool? IsActive { get; set; }
+        public bool IsActive { get; set; }
     }
 }

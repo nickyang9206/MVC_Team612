@@ -27,7 +27,7 @@ namespace MVC_Team_Git_JooleMay.Controllers
         public ActionResult Search(SearchModelS_Model vMSearchModel)
         {
             int subCategoryID = Convert.ToInt32(vMSearchModel.SubCategoryID);
-            Session["sessionSubCategoryID"] = subCategoryID;
+            Session["SessionSubCategoryID"] = subCategoryID;
             SearchResultS_Model vmSearchResult = new SearchResultS_Model
             {
                 ModelTechFilters = _service.GetModelTechFilters(subCategoryID),
@@ -57,37 +57,71 @@ namespace MVC_Team_Git_JooleMay.Controllers
         }
         [HttpPost]
 
-        public ActionResult SearchResults(VMSearchResult vmSearchResult, string submit)
+        public ActionResult SearchResults(SearchResultS_Model vmSearchResult, string submit)
         {
-
-            //switch (submit)
-            //{
-            //    case "Save":
-            //        return PartialView("ProductListPartial", result1);
-            //    case "Clear":
-            //        return PartialView("ProductListPartial", searchResult);
-            //}
+            int _subCategoryID = Convert.ToInt32(Session["SessionSubCategoryID"]);
+            
+            switch (submit)
+            {
+                case "Save":
+                    vmSearchResult.SMProductDetails = _service.GetFiltered(vmSearchResult, _subCategoryID);
+                    vmSearchResult.ModelTechFilters = _service.GetModelTechFilters(_subCategoryID);
+                    //return PartialView("ProductListPartial", vmSearchResult.SMProductDetails);
+                    return View("SearchResults", vmSearchResult);
+                case "Clear":
+                    vmSearchResult.SMProductDetails = _service.GetProductDetails(_subCategoryID);
+                    vmSearchResult.ModelTechFilters = _service.GetModelTechFilters(_subCategoryID);
+                    //return PartialView("ProductListPartial", vmSearchResult.SMProductDetails);
+                    return View("SearchResults", vmSearchResult);
+            }
             return View();
         }
 
-        public VMSearchResult filterProductList(VMSearchResult vMSearchResult, List<SMProductDetails> sMProductDetails)
-        {
-            IEnumerable<SMProductDetails> result = sMProductDetails;
-            if (vMSearchResult.ModelTechFilters[0] != null)
-            {
-                decimal min = Convert.ToDecimal(vMSearchResult.ModelTechFilters[0].MinValue);
-                decimal max = Convert.ToDecimal(vMSearchResult.ModelTechFilters[0].MaxValue);
-                result = sMProductDetails.Where(r => r.AirFlow >= min && r.AirFlow >= max);
-            }
-            vMSearchResult.SMProductDetails = result.ToList();
-
-            return vMSearchResult;
-        }
 
         public PartialViewResult ProductListPartial(SearchResultS_Model vMSearchResult)
         {
             return PartialView(vMSearchResult.SMProductDetails);
         }
+        //add on 0613-2019 08:37 added search bar in layout page
+        public PartialViewResult SearchBar()
+        {
+            SearchModelS_Model vMSearchModel = new SearchModelS_Model();
+            vMSearchModel.CategoriesList = this.GetCategories();
+            return PartialView(vMSearchModel);
+        }
+        [HttpPost]
+        public JsonResult Autocomplete1(string term, string CategoryID)
+        {
+
+            return Json(getSubCategory(term, Convert.ToInt32(CategoryID)), JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public ActionResult SearchBar(SearchModelS_Model vMSearchModel)
+        {
+            int subCategoryID = Convert.ToInt32(vMSearchModel.SubCategoryID);
+            Session["SessionSubCategoryID"] = subCategoryID;
+            SearchResultS_Model vmSearchResult = new SearchResultS_Model
+            {
+                ModelTechFilters = _service.GetModelTechFilters(subCategoryID),
+                SMProductDetails = _service.GetProductDetails(subCategoryID)
+            };
+            ProductTypeChkS_Model vMProductTypeChk1 = new ProductTypeChkS_Model("Private", false);
+            ProductTypeChkS_Model vMProductTypeChk2 = new ProductTypeChkS_Model("Industrial", false);
+            ProductTypeChkS_Model vMProductTypeChk3 = new ProductTypeChkS_Model("Commercial", false);
+            List<ProductTypeChkS_Model> vMProductTypeChks = new List<ProductTypeChkS_Model>
+            {
+                vMProductTypeChk1,
+                vMProductTypeChk2,
+                vMProductTypeChk3
+            };
+            vmSearchResult.VMProductTypeChks = vMProductTypeChks;
+            vmSearchResult.YearStart = "2010";
+            vmSearchResult.YearEnd = DateTime.Now.Year.ToString();
+            TempData["VMSearchResults"] = vmSearchResult;
+            //return View("SearchResults", vmSearchResult);
+            return RedirectToAction("SearchResults", "Search");
+        }
+        //add on 0613-2019 08:37
 
         private List<SelectListItem> GetCategories()
         {
