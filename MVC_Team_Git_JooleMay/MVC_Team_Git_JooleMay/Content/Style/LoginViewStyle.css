@@ -1,0 +1,61 @@
+﻿#signup {
+    margin-right: 50px;
+}
+
+.btn {
+    border: none;
+    background-color: inherit;
+    float: right;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#myBtn {
+    position: fixed;
+    margin-top: -230px;
+    margin-left: 25%;
+    font-size: 20px;
+    color: #08487e;
+}
+
+    #myBtn:hover {
+        color: #ccdcb2;
+    }
+
+#sign {
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#sigh p {
+    margin-top: 150px;
+}
+
+h1 {
+    padding-bottom: 150px;
+}
+
+.submit {
+    background-color: steelblue;
+    margin-top: 10px;
+    width: 6em;
+    height: 2em;
+    border-radius: 3px;
+}
+
+    #submit:hover {
+        background-color: #579fdb;
+        color: #feffbf
+    }
+
+#loginBar {
+    margin-top: 50px
+}
+
+
+
+/*#modalContext {
+    width: 70%;
+}*/
+

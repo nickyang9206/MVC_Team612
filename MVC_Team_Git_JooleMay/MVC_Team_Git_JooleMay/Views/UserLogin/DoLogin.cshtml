@@ -1,0 +1,182 @@
+﻿@model MVC_Team_Git_JooleMay.Models.VMUser
+
+
+@{
+    ViewBag.Title = "DoLogin";
+    Layout = "~/Views/Shared/LoginPage.cshtml";
+}
+
+
+
+    <style>
+        body {
+            background: linear-gradient(to top,white,rgb(32,140,185)) fixed;
+            /*///#2085AF 	R: 32 G: 133 B: 175*/
+        }
+
+        #signp {
+            margin-right: 50px;
+        }
+
+        .btn {
+            border: none;
+            background-color: inherit;
+            float: right;
+            font-size: 16px;
+            cursor: pointer;
+            display: inline-block;
+            border-radius: 5px;
+        }
+
+        #btnSigh {
+            margin-right: 150px;
+            margin-top: -40px;
+            font-size: 20px;
+            color: #08487e;
+        }
+
+            #btnSigh:hover {
+                color: #576343;
+            }
+
+        .content {
+            height: 200px;
+            width: 400px;
+            position: fixed;
+            top: 30%;
+            left: 50%;
+            margin-top: -200px;
+            margin-left: -200px;
+            display: block;
+            text-align: center;
+        }
+
+        #sign {
+            font-family: Arial;
+            font-weight: bold;
+        }
+
+
+        #logoname {
+            font-weight: bold;
+            font-family: Sans-serif;
+            font-size: 110px;
+            height: 60px;
+            color: darkblue;
+            display: inline-block;
+        }
+
+        h1 {
+            padding-bottom: 5px;
+        }
+
+        #logonametwo {
+            font-size: 120px;
+            margin-left: 160px;
+        }
+
+        .circle-overlaping::before {
+            content: '';
+            position: absolute;
+            top: 80px;
+            left: 80px;
+            background-color: deepskyblue;
+            width: 100px;
+            height: 80px;
+            border-radius: 50%;
+            shape-outside: circle(50% at 0 0);
+        }
+
+        .circle-overlaping::after {
+            content: '';
+            position: absolute;
+            top: 70px;
+            left: 130px;
+            background-color: darkblue;
+            width: 100px;
+            height: 80px;
+            border-radius: 50%;
+            shape-outside: circle(50% at 0 0);
+        }
+
+        #submit {
+            background-color: steelblue;
+            margin-top: 10px;
+            width: 6em;
+            height: 2em;
+            border-radius: 3px;
+        }
+
+            #submit:hover {
+                background-color: #579fdb;
+                color: #feffbf
+            }
+
+        .bg-email-icon {
+            background: url('https://img.icons8.com/metro/22/000000/contacts.png') no-repeat 97.25% 0.5px white;
+            border-radius: 3px;
+        }
+
+        .bg-lock-icon {
+            background: url('https://img.icons8.com/android/22/000000/lock.png') no-repeat 97.25% 0.5px white;
+            border-radius: 3px;
+        }
+
+        .mainLabel {
+            margin-top: 60px;
+        }
+
+        .textBoxInp {
+        }
+    </style>
+
+<body>
+    @*this is sign up button*@
+    <div class="signup">
+        <button id="btnSigh" class="btn default">Sign Up</button>
+        @*there should be a click function and redirect to sign up page*@
+
+    </div>
+
+    <div class="content">
+ 
+            @using (Html.BeginForm("DoLogin", "LoginPage", FormMethod.Post))
+            {
+
+                <div class="form-horizontal">
+                    <hr />
+
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control textBoxInp", placeholder = "Username" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                    </div>
+
+                    @*<div class="col-md-12 textBoxDiv">
+                            <input type="text" class="form-control textBox" placeholder="Username">
+                        </div>*@
+
+                    <div class="form-group">
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control textBoxInp", placeholder = "Password" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                    </div>
+
+                    @*<div class="col-md-12 textBoxDiv">
+                            <input type="text" class="form-control textBox" id="btnTxtSec" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                        </div>*@
+
+
+                    <input type="submit" id="submit" value="Create" class="btn btn-success" />
+
+
+
+
+                </div>
+            }
+        </div>
+</body>
+
+
+
+
+

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<MVC_Team_Git_JooleMay.Models.Project>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/SearchHeader.cshtml";
+}
+
+<h2>Your Project</h2>
+<table width="90%" align="center">
+    <thead>
+        <tr>
+            <th align="left">Item</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model)
+        {
+            <tr>
+                @*<td align="center">@line.Lines.ProjectName</td>
+                <td align="left">@line.Lines.Product.Name</td>
+                <td align="right">@line.Lines.Product.Price.ToString("c")</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromProject", "Project"))
+                    {
+                        @Html.Hidden("ProductId", line.Lines.Product.ProductID)
+                        <input class="actionButtons" type="submit" value="Remove" />
+                    }
+                </td>*@
+            </tr>
+
+        }
+    </tbody>
+</table>

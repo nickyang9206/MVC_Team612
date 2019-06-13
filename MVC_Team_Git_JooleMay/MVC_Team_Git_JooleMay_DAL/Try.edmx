@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JooleMayModelTry.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <Function Name="spGetProductDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductID" Type="int" Mode="In" />
+          <Parameter Name="SubCategoryID" Type="int" Mode="In" />
+          <Parameter Name="Max_AirFlow" Type="decimal" Mode="In" />
+          <Parameter Name="Min_AirFlow" Type="decimal" Mode="In" />
+          <Parameter Name="Max_PowerMin" Type="decimal" Mode="In" />
+          <Parameter Name="Min_PowerMin" Type="decimal" Mode="In" />
+          <Parameter Name="Max_PowerMax" Type="decimal" Mode="In" />
+          <Parameter Name="Min_PowerMax" Type="decimal" Mode="In" />
+          <Parameter Name="Max_VACMin" Type="decimal" Mode="In" />
+          <Parameter Name="Min_VACMin" Type="decimal" Mode="In" />
+          <Parameter Name="Max_VACMAX" Type="decimal" Mode="In" />
+          <Parameter Name="Min_VACMAX" Type="decimal" Mode="In" />
+          <Parameter Name="Max_FanSpeedMin" Type="int" Mode="In" />
+          <Parameter Name="Min_FanSpeedMin" Type="int" Mode="In" />
+          <Parameter Name="Max_FanSpeedMax" Type="int" Mode="In" />
+          <Parameter Name="Min_FanSpeedMax" Type="int" Mode="In" />
+          <Parameter Name="Max_NumberofFanSpeed" Type="int" Mode="In" />
+          <Parameter Name="Min_NumberofFanSpeed" Type="int" Mode="In" />
+          <Parameter Name="Max_SoundAtMaxSpeed" Type="int" Mode="In" />
+          <Parameter Name="Min_SoundAtMaxSpeed" Type="int" Mode="In" />
+          <Parameter Name="Max_FanSweepDiameter" Type="decimal" Mode="In" />
+          <Parameter Name="Min_FanSweepDiameter" Type="decimal" Mode="In" />
+          <Parameter Name="Max_HeightMin" Type="decimal" Mode="In" />
+          <Parameter Name="Min_HeightMin" Type="decimal" Mode="In" />
+          <Parameter Name="Max_HeightMax" Type="decimal" Mode="In" />
+          <Parameter Name="Min_HeightMax" Type="decimal" Mode="In" />
+          <Parameter Name="Max_Weight" Type="decimal" Mode="In" />
+          <Parameter Name="Min_Weight" Type="decimal" Mode="In" />
+        </Function>
+        <EntityContainer Name="JooleMayModelTryStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JooleMayModelTry" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="JooleMayEntities1" annotation:LazyLoadingEnabled="true" >
+          <FunctionImport Name="spGetProductDetails">
+            <Parameter Name="ProductID" Mode="In" Type="Int32" />
+            <Parameter Name="SubCategoryID" Mode="In" Type="Int32" />
+            <Parameter Name="Max_AirFlow" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_AirFlow" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_PowerMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_PowerMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_PowerMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_PowerMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_VACMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_VACMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_VACMAX" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_VACMAX" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_FanSpeedMin" Mode="In" Type="Int32" />
+            <Parameter Name="Min_FanSpeedMin" Mode="In" Type="Int32" />
+            <Parameter Name="Max_FanSpeedMax" Mode="In" Type="Int32" />
+            <Parameter Name="Min_FanSpeedMax" Mode="In" Type="Int32" />
+            <Parameter Name="Max_NumberofFanSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Min_NumberofFanSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Max_SoundAtMaxSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Min_SoundAtMaxSpeed" Mode="In" Type="Int32" />
+            <Parameter Name="Max_FanSweepDiameter" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_FanSweepDiameter" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_HeightMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_HeightMin" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_HeightMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_HeightMax" Mode="In" Type="Decimal" />
+            <Parameter Name="Max_Weight" Mode="In" Type="Decimal" />
+            <Parameter Name="Min_Weight" Mode="In" Type="Decimal" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JooleMayModelTryStoreContainer" CdmEntityContainer="JooleMayEntities1" >
+          <FunctionImportMapping FunctionImportName="spGetProductDetails" FunctionName="JooleMayModelTry.Store.spGetProductDetails" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
