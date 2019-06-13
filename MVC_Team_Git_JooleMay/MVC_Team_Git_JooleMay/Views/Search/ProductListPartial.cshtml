@@ -13,16 +13,20 @@
                 <b>@Html.DisplayFor(modelItem => product.SeriesName) Series</b><br />
                 <b>@Html.DisplayFor(modelItem => product.ModelName)</b><br />
                 <br />
-                <span>@Html.DisplayFor(modelItem => product.AirFlow) CFM</span><br />
-                <span>@Html.DisplayFor(modelItem => product.PowerMax)W  at max speed</span><br />
-                <span>@Html.DisplayFor(modelItem => product.SoundAtMaxSpeed) dBA  at max speed</span><br />
-                <span>@Html.DisplayFor(modelItem => product.FanSweepDiameter)" sweep diameter</span>
+                @if (@product.TechnicalSpecifationID < 4)
+                {
+                    <span>@Html.DisplayFor(modelItem => product.AirFlow) CFM</span><br />
+                    <span>@Html.DisplayFor(modelItem => product.PowerMax)W  at max speed</span><br />
+                    <span>@Html.DisplayFor(modelItem => product.SoundAtMaxSpeed) dBA  at max speed</span><br />
+                    <span>@Html.DisplayFor(modelItem => product.FanSweepDiameter)" sweep diameter</span>
+                }
+
                 <br />
                 <br />
                 <br />
                 <br />
-                
-               
+
+
                 <input type="checkbox" name="compare" style="width: 15px;margin-left: -20px;" id=@Html.DisplayFor(modelItem => product.ProductID) value=@Html.DisplayFor(modelItem => product.ProductID) /> <b>Compare</b>
 
                 <button type="button" value="Add to" style="color:white;background-color:steelblue;border:none;border-radius:2px;width:60px;height:30px;" onclick="location.href='@Url.Action("Project", "Project", new { productID = product.ProductID })'">Add to</button>
