@@ -121,7 +121,24 @@ namespace MVC_Team_Git_JooleMay_Service.Class_Service
         }
         public List<SMProductDetails> GetFiltered(SearchResultS_Model searchResultS_Model,int SubCategoryID)
         {
-            List<SMProductDetails> filteredProductDetails = GetProductDetails(SubCategoryID);
+            //List<SMProductDetails> filteredProductDetails = GetProductDetails(SubCategoryID);
+            // added on 0613 07:56 for product type filter
+ 
+            List < SMProductDetails > filteredProductDetails1 = GetProductDetails(SubCategoryID);
+            List<SMProductDetails> filteredProductDetails = new List<SMProductDetails>();
+            //filteredProductDetails.Add(new SMProductDetails());
+            for (int i = 0; i < searchResultS_Model.VMProductTypeChks.Count(); i++)
+            {
+                if (searchResultS_Model.VMProductTypeChks[i].IsProductTypeChecked)
+                    filteredProductDetails.AddRange(filteredProductDetails1.Where(a => a.ProductType == searchResultS_Model.VMProductTypeChks[i].ProductTypeName));
+            }
+
+            //added on 0613 07:56 for model year filter
+
+            filteredProductDetails = filteredProductDetails.Where(a => Convert.ToInt32(a.ModelYear) >= Convert.ToInt32(searchResultS_Model.YearStart) && Convert.ToInt32(a.ModelYear) <= Convert.ToInt32(searchResultS_Model.YearEnd)).ToList();
+
+
+            //added on 0613 07:56 end
             for (int i = 0; i < searchResultS_Model.VMProductTypeChks.Count(); i++)
             {
                 switch (searchResultS_Model.ModelTechFilters[i].PropertyID)

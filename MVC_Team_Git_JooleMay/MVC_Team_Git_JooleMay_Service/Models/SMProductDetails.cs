@@ -37,5 +37,6 @@ namespace MVC_Team_Git_JooleMay_Service.Models
         public decimal? HeightMin { get; set; }
         public decimal? HeightMax { get; set; }
         public decimal? Weight { get; set; }
+        public string ProductType { get; set; }
     }
 }
